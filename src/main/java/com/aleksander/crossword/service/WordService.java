@@ -12,6 +12,8 @@ import com.aleksander.crossword.model.enums.SortOrder;
 import com.aleksander.crossword.repository.WordRepository;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,15 +38,29 @@ public class WordService {
                 .map(this::toDto)
                 .collect(Collectors.toList());
 
-        filtered = sort(filtered, request);
+        List<WordDto> result = new ArrayList<>(filtered);
 
-        if (request.getLimit() != null && request.getLimit() < filtered.size()) {
-            filtered = filtered.subList(0, request.getLimit());
+        if (Boolean.TRUE.equals(request.getRandom())) {
+
+            Collections.shuffle(result);
+
+            if (request.getLimit() != null && request.getLimit() < result.size()) {
+                result = result.subList(0, request.getLimit());
+            }
+
+            result = sort(result, request);
+
+        } else {
+            result = sort(result, request);
+
+            if (request.getLimit() != null && request.getLimit() < result.size()) {
+                result = result.subList(0, request.getLimit());
+            }
         }
 
         return new WordResponse(
-                filtered.size(),
-                filtered,
+                result.size(),
+                result,
                 Instant.now());
     }
 
@@ -130,15 +146,10 @@ public class WordService {
         }
 
         Comparator<WordDto> comparator = switch (r.getSort()) {
-
             case LENGTH -> Comparator.comparing(WordDto::getLength);
             case ALPHABET -> Comparator.comparing(WordDto::getLemma);
-
             default -> throw new InvalidSortException("Unsupported sort type: " + r.getSort());
         };
-
-        if (comparator == null)
-            return list;
 
         if (r.getOrder() == SortOrder.DESC) {
             comparator = comparator.reversed();

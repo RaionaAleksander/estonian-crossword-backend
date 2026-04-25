@@ -27,6 +27,8 @@ public class WordFilterRequest {
 
     private Integer limit;
 
+    private Boolean random;
+
     private SortType sort;
     private SortOrder order;
 }

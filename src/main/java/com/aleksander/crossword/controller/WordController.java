@@ -29,6 +29,7 @@ public class WordController {
             @RequestParam(required = false) List<String> notContains,
             @RequestParam(required = false) String pattern,
             @RequestParam(defaultValue = "20") Integer limit,
+            @RequestParam(required = false) Boolean random,
             @RequestParam(required = false) SortType sort,
             @RequestParam(required = false) SortOrder order) {
 
@@ -41,6 +42,7 @@ public class WordController {
                 notContains,
                 pattern,
                 limit,
+                random,
                 sort,
                 order);
 
