@@ -10,4 +10,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleInvalidSort(InvalidSortException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
+
+    @ExceptionHandler(WordSearchException.class)
+    public ResponseEntity<String> handleWordSearchException(WordSearchException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }
