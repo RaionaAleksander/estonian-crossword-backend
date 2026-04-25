@@ -17,4 +17,6 @@ public class WordSearchResponse {
     private List<PlacementDto> placements;
 
     private Instant generatedAt;
+
+    private String warning;
 }

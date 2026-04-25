@@ -37,20 +37,11 @@ public class WordSearchService {
         int rows = request.getRows();
         int cols = request.getCols();
 
-        WordFilterRequest filter = new WordFilterRequest();
-        filter.setLimit(request.getWordsCount());
-        if (request.getMinLength() != null) {
-            filter.setMinLength(request.getMinLength());
-        }
+        WordFilterRequest filter = request.getFilter();
 
-        if (request.getMaxLength() != null) {
-            filter.setMaxLength(request.getMaxLength());
-        } else {
+        if (filter.getMaxLength() == null) {
             filter.setMaxLength(Math.max(rows, cols));
         }
-
-        // filter.setSort(SortType.LENGTH);
-        // filter.setOrder(SortOrder.DESC);
 
         WordResponse wordResponse = wordService.getWords(filter);
 
@@ -61,6 +52,23 @@ public class WordSearchService {
 
         if (words.isEmpty()) {
             throw new NoWordsFoundException();
+        }
+
+        int requested = request.getWordsCount();
+        int actual = words.size();
+
+        String warning = null;
+
+        if (actual < requested) {
+
+            if (Boolean.TRUE.equals(request.getAllowIncomplete())) {
+
+                warning = "Requested " + requested + ", but only " + actual + " words available";
+
+            } else {
+                throw new WordSearchGenerationException(
+                        "Not enough words found: " + actual + "/" + requested);
+            }
         }
 
         for (int attempt = 0; attempt < 100; attempt++) {
@@ -90,7 +98,8 @@ public class WordSearchService {
                         grid,
                         words,
                         placements,
-                        Instant.now());
+                        Instant.now(),
+                        warning);
             }
         }
 

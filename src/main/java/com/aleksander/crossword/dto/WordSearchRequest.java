@@ -1,8 +1,10 @@
 package com.aleksander.crossword.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class WordSearchRequest {
 
     private int rows;
@@ -10,6 +12,7 @@ public class WordSearchRequest {
 
     private int wordsCount;
 
-    private Integer minLength;
-    private Integer maxLength;
+    private Boolean allowIncomplete;
+
+    private WordFilterRequest filter;
 }
