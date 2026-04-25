@@ -5,8 +5,6 @@ import com.aleksander.crossword.exception.wordsearch.InvalidDirectionException;
 import com.aleksander.crossword.exception.wordsearch.NoWordsFoundException;
 import com.aleksander.crossword.exception.wordsearch.WordSearchGenerationException;
 import com.aleksander.crossword.model.enums.Direction;
-import com.aleksander.crossword.model.enums.SortOrder;
-import com.aleksander.crossword.model.enums.SortType;
 import com.aleksander.crossword.validation.WordSearchValidator;
 
 import lombok.RequiredArgsConstructor;
@@ -124,16 +122,26 @@ public class WordSearchService {
 
         List<Direction> directions = new ArrayList<>();
 
+        int len = word.length();
+
         // horizontal
-        if (word.length() <= cols) {
+        if (len <= cols) {
             directions.add(Direction.RIGHT);
             directions.add(Direction.LEFT);
         }
 
         // vertical
-        if (word.length() <= rows) {
+        if (len <= rows) {
             directions.add(Direction.DOWN);
             directions.add(Direction.UP);
+        }
+
+        // diagonal
+        if (len <= rows && len <= cols) {
+            directions.add(Direction.DOWN_RIGHT);
+            directions.add(Direction.DOWN_LEFT);
+            directions.add(Direction.UP_RIGHT);
+            directions.add(Direction.UP_LEFT);
         }
 
         return directions;
@@ -179,6 +187,26 @@ public class WordSearchService {
                     col = random.nextInt(cols);
                 }
 
+                case DOWN_RIGHT -> {
+                    row = random.nextInt((rows - word.length()) + 1);
+                    col = random.nextInt((cols - word.length()) + 1);
+                }
+
+                case DOWN_LEFT -> {
+                    row = random.nextInt((rows - word.length()) + 1);
+                    col = random.nextInt(word.length() - 1, cols);
+                }
+
+                case UP_RIGHT -> {
+                    row = random.nextInt(word.length() - 1, rows);
+                    col = random.nextInt((cols - word.length()) + 1);
+                }
+
+                case UP_LEFT -> {
+                    row = random.nextInt(word.length() - 1, rows);
+                    col = random.nextInt(word.length() - 1, cols);
+                }
+
                 default -> throw new InvalidDirectionException(dir.name());
             }
 
@@ -207,6 +235,10 @@ public class WordSearchService {
             case LEFT -> col - len + 1 >= 0;
             case DOWN -> row + len <= rows;
             case UP -> row - len + 1 >= 0;
+            case DOWN_RIGHT -> row + len <= rows && col + len <= cols;
+            case DOWN_LEFT -> row + len <= rows && col - len + 1 >= 0;
+            case UP_RIGHT -> row - len + 1 >= 0 && col + len <= cols;
+            case UP_LEFT -> row - len + 1 >= 0 && col - len + 1 >= 0;
         };
     }
 
@@ -222,6 +254,22 @@ public class WordSearchService {
                 case LEFT -> c -= i;
                 case DOWN -> r += i;
                 case UP -> r -= i;
+                case DOWN_RIGHT -> {
+                    r += i;
+                    c += i;
+                }
+                case DOWN_LEFT -> {
+                    r += i;
+                    c -= i;
+                }
+                case UP_RIGHT -> {
+                    r -= i;
+                    c += i;
+                }
+                case UP_LEFT -> {
+                    r -= i;
+                    c -= i;
+                }
             }
 
             char existing = grid[r][c];
@@ -243,6 +291,10 @@ public class WordSearchService {
                 case LEFT -> grid[row][col - i] = word.charAt(i);
                 case DOWN -> grid[row + i][col] = word.charAt(i);
                 case UP -> grid[row - i][col] = word.charAt(i);
+                case DOWN_RIGHT -> grid[row + i][col + i] = word.charAt(i);
+                case DOWN_LEFT -> grid[row + i][col - i] = word.charAt(i);
+                case UP_RIGHT -> grid[row - i][col + i] = word.charAt(i);
+                case UP_LEFT -> grid[row - i][col - i] = word.charAt(i);
             }
         }
     }
