@@ -3,7 +3,9 @@ package com.aleksander.crossword.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import com.aleksander.crossword.service.WordClueService;
+import com.aleksander.crossword.clue.model.WordClue;
+import com.aleksander.crossword.clue.service.WordClueService;
+import com.aleksander.crossword.exception.wordclue.WordClueNotFoundException;
 
 @RestController
 @RequestMapping("/api/words")
@@ -13,7 +15,7 @@ public class WordClueController {
     private final WordClueService wordClueService;
 
     @GetMapping("/clue")
-    public String getClue(@RequestParam String word) {
-        return wordClueService.getClue(word);
+    public WordClue getClue(@RequestParam String word) {
+        return wordClueService.getClue(word).orElseThrow(() -> new WordClueNotFoundException(word));
     }
 }
