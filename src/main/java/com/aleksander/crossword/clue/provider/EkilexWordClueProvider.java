@@ -2,6 +2,7 @@ package com.aleksander.crossword.clue.provider;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +26,7 @@ public class EkilexWordClueProvider implements WordClueProvider {
     private final EkilexProperties properties;
 
     @Override
+    @Cacheable(value = "ekilex_meanings", key = "#lemma.toLowerCase()", unless = "#result == null || #result.isEmpty()")
     public List<WordMeaning> getMeanings(String lemma) {
 
         List<WordMeaning> meanings = new ArrayList<>();
