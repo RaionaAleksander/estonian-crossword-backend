@@ -35,6 +35,7 @@ public class WordService {
                 .filter(w -> filterByContains(w, request))
                 .filter(w -> filterByNotContains(w, request))
                 .filter(w -> filterByPattern(w, request))
+                .filter(w -> filterByExcludedWords(w, request))
                 .map(this::toDto)
                 .collect(Collectors.toList());
 
@@ -134,6 +135,13 @@ public class WordService {
         }
 
         return true;
+    }
+
+    private boolean filterByExcludedWords(Word w, WordFilterRequest r) {
+        if (r.getExcludedWords() == null || r.getExcludedWords().isEmpty()) {
+            return true;
+        }
+        return !r.getExcludedWords().contains(w.getLemma());
     }
 
     private WordDto toDto(Word w) {

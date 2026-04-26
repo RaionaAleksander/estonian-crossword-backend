@@ -25,6 +25,8 @@ public class WordFilterRequest {
 
     private String pattern;
 
+    private List<String> excludedWords;
+
     private Integer limit;
 
     private Boolean random;

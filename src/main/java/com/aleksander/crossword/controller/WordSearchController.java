@@ -34,6 +34,7 @@ public class WordSearchController {
             @RequestParam(required = false) String endsWith,
             @RequestParam(required = false) List<String> contains,
             @RequestParam(required = false) List<String> notContains,
+            @RequestParam(required = false) List<String> excludedWords,
             @RequestParam(required = false) String pattern) {
         WordFilterRequest filter = new WordFilterRequest(
                 minLength,
@@ -43,6 +44,7 @@ public class WordSearchController {
                 contains,
                 notContains,
                 pattern,
+                excludedWords,
                 wordsCount, // limit
                 true, // random
                 SortType.LENGTH,
