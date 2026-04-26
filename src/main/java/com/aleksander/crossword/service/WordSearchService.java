@@ -4,6 +4,7 @@ import com.aleksander.crossword.dto.*;
 import com.aleksander.crossword.exception.wordsearch.InvalidDirectionException;
 import com.aleksander.crossword.exception.wordsearch.NoWordsFoundException;
 import com.aleksander.crossword.exception.wordsearch.WordSearchGenerationException;
+import com.aleksander.crossword.generator.GameGenerator;
 import com.aleksander.crossword.model.enums.Direction;
 import com.aleksander.crossword.validation.WordSearchValidator;
 
@@ -17,7 +18,7 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
-public class WordSearchService {
+public class WordSearchService implements GameGenerator<WordSearchRequest, WordSearchResponse> {
 
     private final WordService wordService;
 
