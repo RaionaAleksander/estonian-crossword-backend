@@ -20,6 +20,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
+    @ExceptionHandler(FindWordException.class)
+    public ResponseEntity<String> handleFindWordException(FindWordException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
     @ExceptionHandler(WordClueFetchException.class)
     public ResponseEntity<String> handleClueError(WordClueFetchException ex) {
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
