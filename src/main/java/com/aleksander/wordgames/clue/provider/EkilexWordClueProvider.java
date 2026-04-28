@@ -82,7 +82,7 @@ public class EkilexWordClueProvider implements WordClueProvider {
                     }
 
                     for (Definition def : defs) {
-                        String value = def.getValue().trim();
+                        String value = sanitizeDefinition(def.getValue());
 
                         if (isValidDefinition(value)) {
                             definitions.add(normalizeDefinition(value));
@@ -105,11 +105,57 @@ public class EkilexWordClueProvider implements WordClueProvider {
 
     // ---------------- helpers ----------------
 
+    private String sanitizeDefinition(String value) {
+
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+
+        if (value.contains("(") && value.contains(")")) {
+            value = removeBracketBlocks(value);
+        }
+
+        return value;
+    }
+
+    private String removeBracketBlocks(String text) {
+        StringBuilder result = new StringBuilder();
+        int depth = 0;
+
+        for (int i = 0; i < text.length(); i++) {
+
+            char c = text.charAt(i);
+
+            if (c == '(') {
+                depth++;
+                continue;
+            }
+
+            if (c == ')') {
+                if (depth > 0) {
+                    depth--;
+                }
+                continue;
+            }
+
+            if (depth == 0) {
+                result.append(c);
+            }
+        }
+
+        return result.toString().replaceAll("\\s+", " ").trim();
+    }
+
+    private boolean isSingleWord(String value) {
+        return value.split("\\s+").length == 1;
+    }
+
     private boolean isValidDefinition(String value) {
         if (value == null || value.isBlank()) {
             return false;
         }
-        if (value.startsWith("(") && value.endsWith(")")) {
+
+        if (isSingleWord(value)) {
             return false;
         }
 
