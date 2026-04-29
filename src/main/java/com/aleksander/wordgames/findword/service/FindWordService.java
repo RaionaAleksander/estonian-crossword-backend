@@ -2,8 +2,8 @@ package com.aleksander.wordgames.findword.service;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -17,6 +17,7 @@ import com.aleksander.wordgames.findword.dto.FindWordClueDto;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
 import com.aleksander.wordgames.findword.dto.FindWordResponse;
 import com.aleksander.wordgames.findword.exception.FindWordGenerationException;
+import com.aleksander.wordgames.findword.exception.FindWordValidationException;
 import com.aleksander.wordgames.findword.validation.FindWordValidator;
 import com.aleksander.wordgames.generator.GameGenerator;
 import com.aleksander.wordgames.word.dto.WordDto;
@@ -38,6 +39,10 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         FindWordValidator.validate(request);
         String mainWord = request.getMainWord().trim().toLowerCase();
 
+        if (!wordService.exists(mainWord)) {
+            throw new FindWordValidationException("Main word not found in dictionary: " + mainWord);
+        }
+
         int gridSize = request.getMaxCrossLength();
         int mainWordGridIndex = gridSize / 2;
 
@@ -56,7 +61,8 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                         i,
                         mainWordGridIndex,
                         gridSize,
-                        usedWords);
+                        usedWords,
+                        request.getFilter());
 
                 if (clue == null) {
                     success = false;
@@ -81,7 +87,6 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                         enrichedClues,
                         Instant.now());
             }
-
         }
 
         throw new FindWordGenerationException("Failed to generate find-word puzzle");
@@ -92,12 +97,49 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
             int mainWordLetterIndex,
             int mainWordGridIndex,
             int gridSize,
-            Set<String> usedWords) {
+            Set<String> usedWords,
+            WordFilterRequest baseFilter) {
 
         WordFilterRequest filter = new WordFilterRequest();
-        filter.setContains(List.of(String.valueOf(letter)));
-        filter.setExcludedWords(new ArrayList<>(usedWords));
-        filter.setMaxLength(gridSize);
+
+        if (baseFilter != null) {
+            filter.setMinLength(baseFilter.getMinLength());
+            filter.setStartsWith(baseFilter.getStartsWith());
+            filter.setEndsWith(baseFilter.getEndsWith());
+            filter.setNotContains(baseFilter.getNotContains());
+            filter.setPattern(baseFilter.getPattern());
+        }
+
+        Set<String> contains = new LinkedHashSet<>();
+
+        if (baseFilter != null && baseFilter.getContains() != null) {
+            contains.addAll(baseFilter.getContains());
+        }
+
+        contains.add(String.valueOf(letter));
+
+        filter.setContains(new ArrayList<>(contains));
+
+        Integer userMax = baseFilter != null ? baseFilter.getMaxLength() : null;
+
+        if (userMax == null) {
+            filter.setMaxLength(gridSize);
+        } else {
+            filter.setMaxLength(Math.min(userMax, gridSize));
+        }
+
+        Set<String> excluded = new HashSet<>();
+
+        // 1. user excluded words
+        if (baseFilter != null && baseFilter.getExcludedWords() != null) {
+            excluded.addAll(baseFilter.getExcludedWords());
+        }
+
+        // 2. game used words
+        excluded.addAll(usedWords);
+
+        filter.setExcludedWords(new ArrayList<>(excluded));
+
         filter.setLimit(20);
         filter.setRandom(true);
 
@@ -106,8 +148,6 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         if (candidates.isEmpty()) {
             return null;
         }
-
-        Collections.shuffle(candidates, random);
 
         for (WordDto dto : candidates) {
 

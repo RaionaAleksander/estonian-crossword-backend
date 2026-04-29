@@ -9,4 +9,6 @@ import java.util.List;
 public interface WordRepository extends JpaRepository<Word, Long> {
 
     List<Word> findByLengthBetween(int min, int max);
+
+    boolean existsByLemma(String lemma);
 }

@@ -167,4 +167,8 @@ public class WordService {
                 .sorted(comparator)
                 .toList();
     }
+
+    public boolean exists(String lemma) {
+        return wordRepository.existsByLemma(lemma);
+    }
 }
