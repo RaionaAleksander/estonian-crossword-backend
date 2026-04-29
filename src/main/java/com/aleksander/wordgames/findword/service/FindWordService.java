@@ -44,7 +44,9 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         }
 
         int gridSize = request.getMaxCrossLength();
-        int mainWordGridIndex = gridSize / 2;
+        int mainWordGridIndex = request.getMainWordGridIndex() != null
+                ? request.getMainWordGridIndex()
+                : request.getMaxCrossLength() / 2;
 
         for (int attempt = 0; attempt < 100; attempt++) {
             boolean success = true;
@@ -75,7 +77,9 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
             if (success) {
 
-                Direction direction = pickRandomDirection();
+                Direction direction = request.getMainWordDirection() != null
+                        ? request.getMainWordDirection()
+                        : (random.nextBoolean() ? Direction.DOWN : Direction.RIGHT);
 
                 List<FindWordClueDto> enrichedClues = enrichClues(clues);
 

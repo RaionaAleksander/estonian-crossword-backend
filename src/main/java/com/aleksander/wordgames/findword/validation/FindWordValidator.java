@@ -31,8 +31,8 @@ public class FindWordValidator {
             throw new FindWordValidationException("maxCrossLength is too large");
         }
 
-        Integer min = request.getFilter() != null ? request.getFilter().getMinLength() : null;
-        Integer max = request.getFilter() != null ? request.getFilter().getMaxLength() : null;
+        Integer min = request.getFilter().getMinLength();
+        Integer max = request.getFilter().getMaxLength();
 
         if (min != null && min < 1) {
             throw new FindWordValidationException("minLength must be >= 1");
@@ -44,6 +44,14 @@ public class FindWordValidator {
 
         if (max != null && max > maxCrossLength) {
             throw new FindWordValidationException("maxLength must be <= maxCrossLength");
+        }
+
+        Integer mainWordGridIndex = request.getMainWordGridIndex();
+
+        if (mainWordGridIndex != null) {
+            if (mainWordGridIndex < 0 || mainWordGridIndex >= maxCrossLength) {
+                throw new FindWordValidationException("mainWordGridIndex must be within grid bounds");
+            }
         }
     }
 }

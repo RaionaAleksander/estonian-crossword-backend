@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aleksander.wordgames.common.enums.Direction;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
 import com.aleksander.wordgames.findword.dto.FindWordResponse;
 import com.aleksander.wordgames.findword.service.FindWordService;
@@ -25,6 +26,8 @@ public class FindWordController {
     public FindWordResponse generate(
             @RequestParam String mainWord,
             @RequestParam(defaultValue = "10") Integer maxCrossLength,
+            @RequestParam(required = false) Integer mainWordGridIndex,
+            @RequestParam(required = false) Direction mainWordDirection,
             @RequestParam(required = false) Integer minLength,
             @RequestParam(required = false) Integer maxLength,
             @RequestParam(required = false) String startsWith,
@@ -48,6 +51,8 @@ public class FindWordController {
         request.setMainWord(mainWord);
         request.setMaxCrossLength(maxCrossLength);
         request.setFilter(filter);
+        request.setMainWordGridIndex(mainWordGridIndex);
+        request.setMainWordDirection(mainWordDirection);
 
         return findWordService.generate(request);
     }
