@@ -4,21 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "words")
+@Table(name = "word_definitions")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Word {
+public class WordDefinition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String lemma;
+    private String definition;
 
-    private int length;
-
-    private String category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "word_id")
+    private Word word;
 }

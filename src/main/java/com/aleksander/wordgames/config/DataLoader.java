@@ -1,21 +1,29 @@
 package com.aleksander.wordgames.config;
 
-import lombok.RequiredArgsConstructor;
+import java.io.InputStream;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.aleksander.wordgames.common.dto.WordJson;
 import com.aleksander.wordgames.model.entity.Word;
+import com.aleksander.wordgames.model.entity.WordDefinition;
+import com.aleksander.wordgames.word.repository.WordDefinitionRepository;
 import com.aleksander.wordgames.word.repository.WordRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final WordRepository wordRepository;
+    private final WordDefinitionRepository definitionRepository;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public void run(String... args) throws Exception {
@@ -24,24 +32,41 @@ public class DataLoader implements CommandLineRunner {
             return;
         }
 
+        loadFromFile("loomad.json", "LOOMAD");
+        loadFromFile("toit.json", "TOIT");
+        loadFromFile("ametid.json", "AMETID");
+
+        System.out.println("Words + definitions loaded!");
+    }
+
+    private void loadFromFile(String fileName, String category) throws Exception {
+
         InputStream is = getClass()
-                .getResourceAsStream("/data/estonian_nouns.txt");
+                .getResourceAsStream("/data/" + fileName);
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-        reader.lines()
-                .map(String::trim)
-                .filter(line -> !line.isEmpty())
-                .forEach(word -> {
-
-                    Word entity = Word.builder()
-                            .lemma(word)
-                            .length(word.length())
-                            .build();
-
-                    wordRepository.save(entity);
+        List<WordJson> words = objectMapper.readValue(
+                is,
+                new TypeReference<>() {
                 });
 
-        System.out.println("Words loaded successfully!");
+        for (WordJson json : words) {
+
+            Word word = Word.builder()
+                    .lemma(json.getWord().toLowerCase())
+                    .length(json.getWord().length())
+                    .category(category)
+                    .build();
+
+            wordRepository.save(word);
+
+            for (String def : json.getDefinitions()) {
+
+                WordDefinition definition = new WordDefinition();
+                definition.setWord(word);
+                definition.setDefinition(def);
+
+                definitionRepository.save(definition);
+            }
+        }
     }
 }

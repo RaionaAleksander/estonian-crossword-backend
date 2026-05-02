@@ -1,0 +1,402 @@
+[
+  {
+    "word": "leib",
+    "definitions": ["Eestlaste põhitoit, tavaliselt must või rukkist", "Küpsetis, mida süüakse igal toidukorral"]
+  },
+  {
+    "word": "sai",
+    "definitions": ["Valgest jahust küpsetis", "Pehme toode, millest tehakse võileibu"]
+  },
+  {
+    "word": "piim",
+    "definitions": ["Valge jook, mida saadakse lehmalt", "Jook, mis sisaldab palju kaltsiumi"]
+  },
+  {
+    "word": "muna",
+    "definitions": ["Kana toode, mida keedetakse või praetakse", "Seda süüakse sageli hommikusöögiks"]
+  },
+  {
+    "word": "juust",
+    "definitions": ["Piimast valmistatud toode, mida pannakse võileivale", "Seda armastavad hiired (nii räägitakse)"]
+  },
+  {
+    "word": "või",
+    "definitions": ["Kollane rasvane toode, mida määritakse leivale"]
+  },
+  {
+    "word": "õun",
+    "definitions": ["Ümmargune vili, mis kasvab aias puu otsas", "Eestis väga tavaline puuvili"]
+  },
+  {
+    "word": "kartul",
+    "definitions": ["Maa all kasvav mugul, mida kutsutakse teiseks leivaks", "Seda süüakse keedetult, praetult või pudruna"]
+  },
+  {
+    "word": "porgand",
+    "definitions": ["Oranž juurvili, mis on hea silmadele", "Jänesee lemmiksöök"]
+  },
+  {
+    "word": "kurk",
+    "definitions": ["Pikk roheline köögivili", "Seda pannakse salatisse või hapendatakse tünnis"]
+  },
+  {
+    "word": "tomat",
+    "definitions": ["Punane ja mahlane köögivili", "Selle mahl on punane ja seda kasutatakse kaste valmistamisel"]
+  },
+  {
+    "word": "sibul",
+    "definitions": ["Kihiline köögivili, mis ajab nutma", "Seda pannakse toidu sisse maitseks"]
+  },
+  {
+    "word": "liha",
+    "definitions": ["Loomne toiduaine", "Seda grillitakse, praetakse või keedetakse"]
+  },
+  {
+    "word": "kala",
+    "definitions": ["Veest püütud toit", "Seda saab praadida või suitsetada"]
+  },
+  {
+    "word": "supp",
+    "definitions": ["Vedel toit, mida süüakse lusikaga", "Selles on sageli puljong, köögiviljad ja liha"]
+  },
+  {
+    "word": "puder",
+    "definitions": ["Teraviljadest keedetud hommikusöök", "Seda süüakse sageli moosi või võisilmaga"]
+  },
+  {
+    "word": "mesi",
+    "definitions": ["Magus aine, mida valmistavad mesilased", "Tervislik toode, mis asendab suhkrut"]
+  },
+  {
+    "word": "suhkur",
+    "definitions": ["Valge magus pulber, mida pannakse tee sisse"]
+  },
+  {
+    "word": "sool",
+    "definitions": ["Valge maitseaine, mis annab toidule maitse", "Seda ei tohi liiga palju tarbida"]
+  },
+  {
+    "word": "kohv",
+    "definitions": ["Must jook, mis teeb hommikul ärksaks", "Seda juuakse sageli koore ja suhkruga"]
+  },
+  {
+    "word": "tee",
+    "definitions": ["Kuum jook, mida tehakse kuivatatud lehtedest ja veest"]
+  },
+  {
+    "word": "mahl",
+    "definitions": ["Puuviljadest või marjadest pigistatud jook"]
+  },
+  {
+    "word": "kook",
+    "definitions": ["Magus küpsetis, mida süüakse sünnipäeval"]
+  },
+  {
+    "word": "šokolaad",
+    "definitions": ["Kakaost valmistatud pruun maiustus"]
+  },
+  {
+    "word": "jäätis",
+    "definitions": ["Külm maiustus, mida süüakse suvel", "See sulab soojas kiiresti"]
+  },
+  {
+    "word": "banaan",
+    "definitions": ["Kollane ja kõver lõunamaa vili"]
+  },
+  {
+    "word": "pirn",
+    "definitions": ["Magus ja mahlane puuvili, mis on alt laiem"]
+  },
+  {
+    "word": "maasikas",
+    "definitions": ["Punane suvine mari", "Selle peal on väikesed seemned ja see kasvab peenras"]
+  },
+  {
+    "word": "mustikas",
+    "definitions": ["Sinine mari, mis kasvab metsas ja teeb keele mustaks"]
+  },
+  {
+    "word": "vaarikas",
+    "definitions": ["Roosa või punane mari, mis kasvab torkivatel põõsastel"]
+  },
+  {
+    "word": "küpsis",
+    "definitions": ["Väike ja krõbe magus küpsetis"]
+  },
+  {
+    "word": "kompvek",
+    "definitions": ["Väike magus amps, mida lapsed armastavad"]
+  },
+  {
+    "word": "pannkook",
+    "definitions": ["Lame ja ümmargune pannil praetud tainas", "Seda süüakse pühapäeva hommikul moosiga"]
+  },
+  {
+    "word": "hapukoor",
+    "definitions": ["Valge ja paks piimatoode, mida pannakse supi peale"]
+  },
+  {
+    "word": "kohupiim",
+    "definitions": ["Teraline piimatoode, millest tehakse kooke või korpe"]
+  },
+  {
+    "word": "vorst",
+    "definitions": ["Lihast valmistatud toode, mida viilutatakse leivale"]
+  },
+  {
+    "word": "viiner",
+    "definitions": ["Väike lihapulk, mida lapsed väga armastavad"]
+  },
+  {
+    "word": "makaron",
+    "definitions": ["Jahust valmistatud torukesed, mida keedetakse vees"]
+  },
+  {
+    "word": "riis",
+    "definitions": ["Väikesed valged terad, mis on pärit Aasiast"]
+  },
+  {
+    "word": "tatar",
+    "definitions": ["Pruunid tervislikud terad, mida süüakse pudruna"]
+  },
+  {
+    "word": "kapsas",
+    "definitions": ["Ümmargune suur lehtis köögivili", "Sest tehakse hapukapsast või salatit"]
+  },
+  {
+    "word": "kaalikas",
+    "definitions": ["Kollane juurvili, mida pannakse ühepajatoidu sisse"]
+  },
+  {
+    "word": "peet",
+    "definitions": ["Tumepunane juurvili, millest tehakse borši"]
+  },
+  {
+    "word": "küüslauk",
+    "definitions": ["Tugeva lõhnaga vili, mis peletab haigusi ja vampiire"]
+  },
+  {
+    "word": "paprika",
+    "definitions": ["Värviline (punane, kollane või roheline) viljalihaga köögivili"]
+  },
+  {
+    "word": "apelsin",
+    "definitions": ["Oranž lõunamaa vili, millest saab mahla"]
+  },
+  {
+    "word": "sidrun",
+    "definitions": ["Kollane ja väga hapu vili"]
+  },
+  {
+    "word": "viinamari",
+    "definitions": ["Väikesed marjad kobarates, millest tehakse veini"]
+  },
+  {
+    "word": "pähkel",
+    "definitions": ["Kõva koorega vili, mida oravad armastavad"]
+  },
+  {
+    "word": "hernes",
+    "definitions": ["Rohelised pallikesed kestas ehk kaunas"]
+  },
+  {
+    "word": "uba",
+    "definitions": ["Valkurikas vili, mida pannakse sageli hautistesse"]
+  },
+  {
+    "word": "seen",
+    "definitions": ["Metsas kasvav kübaraga tegelane, mõni on söödav, mõni mürgine"]
+  },
+  {
+    "word": "pelmeen",
+    "definitions": ["Tainatükk, mille sees on liha", "Seda keedetakse või praetakse pannil"]
+  },
+  {
+    "word": "pitsa",
+    "definitions": ["Itaalia päritolu ümmargune toit, mille peal on palju komponente"]
+  },
+  {
+    "word": "võileib",
+    "definitions": ["Leivaviil, mille peal on või ja lisandid"]
+  },
+  {
+    "word": "salat",
+    "definitions": ["Segu erinevatest tükeldatud köögiviljadest"]
+  },
+  {
+    "word": "kaste",
+    "definitions": ["Vedelam lisand kartuli või liha juurde"]
+  },
+  {
+    "word": "pirukas",
+    "definitions": ["Väike täidisega küpsetis (liha-, kapsa- või porganditäidisega)"]
+  },
+  {
+    "word": "sinep",
+    "definitions": ["Kange ja terav kollane maitseaine", "Kollane ja väga kange maitseaine", "Seda pannakse sageli süldi või viineri peale"]
+  },
+  {
+    "word": "ketšup",
+    "definitions": ["Punane tomatist tehtud kaste friikartulite juurde"]
+  },
+  {
+    "word": "kamajahu",
+    "definitions": ["Eestlaste traditsiooniline jahusegu", "Seda segatakse keefiri või hapupiimaga"]
+  },
+  {
+    "word": "keefir",
+    "definitions": ["Hapu ja tervislik piimajook", "Seda juuakse sageli koos kamaga"]
+  },
+  {
+    "word": "hakkliha",
+    "definitions": ["Peeneks jahvatatud liha", "Sellest tehakse kotlette või kastet"]
+  },
+  {
+    "word": "kotlet",
+    "definitions": ["Pannil praetud ümmargune lihapall"]
+  },
+  {
+    "word": "verivorst",
+    "definitions": ["Eesti traditsiooniline jõulutoit", "Musta värvi vorst, mida süüakse pohlamoosiga"]
+  },
+  {
+    "word": "pohlamoos",
+    "definitions": ["Mõrkjas-magus punane moos", "Seda süüakse sageli verivorsti või lihaga"]
+  },
+  {
+    "word": "kringel",
+    "definitions": ["Suur põimitud pidupäeva küpsetis", "Seda pakutakse sageli sünnipäevadel"]
+  },
+  {
+    "word": "virsik",
+    "definitions": ["Magus ja karvase koorega suur lõunamaa vili"]
+  },
+  {
+    "word": "ploom",
+    "definitions": ["Lilla või kollane puuvili, mille sees on üks suur kivi"]
+  },
+  {
+    "word": "kirss",
+    "definitions": ["Väike punane luuvili, mis kasvab puu otsas"]
+  },
+  {
+    "word": "karusmari",
+    "definitions": ["Karvane või sile mari, mis kasvab torkival põõsal", "Seda kutsutakse ka tikriks"]
+  },
+  {
+    "word": "kõrvits",
+    "definitions": ["Suur kollane või oranž aiavili", "Sellest tehakse hoidiseid või laternaid"]
+  },
+  {
+    "word": "redis",
+    "definitions": ["Väike punane ja kergelt kibe juurvili"]
+  },
+  {
+    "word": "lillkapsas",
+    "definitions": ["Valget värvi õisikuga kapsas"]
+  },
+  {
+    "word": "spinat",
+    "definitions": ["Rohelised lehed, mis teevad rammumeheks", "Tervislik taim, mida pannakse smuutisse või toidu sisse"]
+  },
+  {
+    "word": "õlu",
+    "definitions": ["Odralinnastest valmistatud kääritatud jook"]
+  },
+  {
+    "word": "vein",
+    "definitions": ["Viinamarjadest valmistatud alkoholne jook"]
+  },
+  {
+    "word": "limonaad",
+    "definitions": ["Magus mulliga karastusjook"]
+  },
+  {
+    "word": "müsli",
+    "definitions": ["Helveste, kuivatatud puuviljade ja pähklite segu"]
+  },
+  {
+    "word": "leivakate",
+    "definitions": ["Üldine nimetus kõigele, mida pannakse leiva peale", "Näiteks sink, juust või tomat"]
+  },
+  {
+    "word": "majonees",
+    "definitions": ["Valge kaste, mida tehakse õlist ja munakollasest", "Seda pannakse sageli kartulisalatisse"]
+  },
+  {
+    "word": "hapukurk",
+    "definitions": ["Soolvees seisnud kibe-hapu köögivili", "Krõbe lisand prae kõrvale"]
+  },
+  {
+    "word": "kibuvits",
+    "definitions": ["Punane marja, millest tehakse teed ja moosi"]
+  },
+  {
+    "word": "mädarõigas",
+    "definitions": ["Väga terava maitsega juurikas, millest tehakse valget kastet"]
+  },
+  {
+    "word": "sült",
+    "definitions": ["Eesti rahvustoit, mis on tarretunud lihapuljong"]
+  },
+  {
+    "word": "verikäkk",
+    "definitions": ["Pruun ümmargune viljast ja verest toode, mida praetakse pannil"]
+  },
+  {
+    "word": "pohl",
+    "definitions": ["Punane metsamari, mis maitseb kergelt mõrkjalt"]
+  },
+  {
+    "word": "jõhvikas",
+    "definitions": ["Hapu punane raba-mari", "Seda kutsutakse ka kuremarjaks"]
+  },
+  {
+    "word": "astelpaju",
+    "definitions": ["Oranž tervislik mari, mis kasvab okastega põõsal"]
+  },
+  {
+    "word": "melon",
+    "definitions": ["Suur ja magus vesine puuvili, kõrvitsa sugulane"]
+  },
+  {
+    "word": "arbuus",
+    "definitions": ["Väljast roheline ja seest punane suur suvine vili"]
+  },
+  {
+    "word": "sarapuupähkel",
+    "definitions": ["Metsas kasvav pruun tugeva koorega pähkel"]
+  },
+  {
+    "word": "päevalilleseeme",
+    "definitions": ["Väike musta koorega seeme, mida saab krõbistada"]
+  },
+  {
+    "word": "oliiv",
+    "definitions": ["Väike soolane vili, mis on kas roheline või must"]
+  },
+  {
+    "word": "õli",
+    "definitions": ["Vedel rasv, mida kasutatakse praadimiseks"]
+  },
+  {
+    "word": "äädikas",
+    "definitions": ["Väga hapu vedelik, mida kasutatakse hoidiste tegemisel"]
+  },
+  {
+    "word": "pipar",
+    "definitions": ["Vürtsikas maitseaine, mis võib olla must, valge või punane"]
+  },
+  {
+    "word": "jahu",
+    "definitions": ["Teraviljast jahvatatud pulber, millest tehakse tainast"]
+  },
+  {
+    "word": "pärm",
+    "definitions": ["Aine, mis paneb taigna kerkima"]
+  },
+  {
+    "word": "vahukoor",
+    "definitions": ["Rammus piimatoode, mida klopitakse paksuks vahuks"]
+  }
+]

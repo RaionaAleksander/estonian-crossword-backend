@@ -1,0 +1,402 @@
+[
+  {
+    "word": "õpetaja",
+    "definitions": ["Inimene, kes jagab koolis teadmisi", "Tema töö on lapsi õpetada"]
+  },
+  {
+    "word": "arst",
+    "definitions": ["Inimene, kes ravib haigeid", "Ta töötab haiglas või kliinikus"]
+  },
+  {
+    "word": "politseinik",
+    "definitions": ["Isik, kes valvab korda ja püüab pätte", "Ta sõidab sinivalge autoga ja kannab vormi"]
+  },
+  {
+    "word": "tuletõrjuja",
+    "definitions": ["Inimene, kes kustutab tulekahjusid", "Päästja, kes päästab inimesi ohtlikest olukordadest"]
+  },
+  {
+    "word": "kokk",
+    "definitions": ["Inimene, kes valmistab restoranis süüa", "Tema töökoht on köök"]
+  },
+  {
+    "word": "autojuht",
+    "definitions": ["Inimene, kes juhib autot või bussi", "Selle ameti jaoks on vaja juhiluba"]
+  },
+  {
+    "word": "müüja",
+    "definitions": ["Inimene, kes töötab poes ja teenindab kliente", "Ta võtab raha ja annab kaupa vastu"]
+  },
+  {
+    "word": "ehitaja",
+    "definitions": ["Inimene, kes ehitab maju ja muid hooneid"]
+  },
+  {
+    "word": "juuksur",
+    "definitions": ["Inimene, kes lõikab ja kujundab soenguid"]
+  },
+  {
+    "word": "kunstnik",
+    "definitions": ["Inimene, kes maalb pilte või loob kunsti"]
+  },
+  {
+    "word": "muusik",
+    "definitions": ["Inimene, kes mängib pilli või laulab", "Loominguline inimene, kes teeb muusikat"]
+  },
+  {
+    "word": "põllumees",
+    "definitions": ["Inimene, kes kasvatab vilja ja peab loomi", "Ta töötab maal ja sõidab traktoriga"]
+  },
+  {
+    "word": "lendur",
+    "definitions": ["Inimene, kes juhib lennukit", "Ta viib reisijad läbi õhu sihtkohta"]
+  },
+  {
+    "word": "meditsiiniõde",
+    "definitions": ["Arsti abiline haiglas", "Inimene, kes teeb süste ja hooldab haigeid"]
+  },
+  {
+    "word": "pagar",
+    "definitions": ["Inimene, kes küpsetab leiba ja saiakesi"]
+  },
+  {
+    "word": "kirjanik",
+    "definitions": ["Inimene, kes kirjutab raamatuid või jutte"]
+  },
+  {
+    "word": "näitleja",
+    "definitions": ["Inimene, kes mängib teatris või filmis rolle"]
+  },
+  {
+    "word": "korstnapühkija",
+    "definitions": ["Mustas vormis mees, kes toob õnne ja puhastab korstnaid"]
+  },
+  {
+    "word": "postiljon",
+    "definitions": ["Inimene, kes toob koju kirju ja ajalehti"]
+  },
+  {
+    "word": "teadlane",
+    "definitions": ["Inimene, kes uurib maailma ja teeb katseid laboratooriumis"]
+  },
+  {
+    "word": "ajakirjanik",
+    "definitions": ["Inimene, kes kogub uudiseid ja kirjutab leheartikleid"]
+  },
+  {
+    "word": "arhitekt",
+    "definitions": ["Inimene, kes projekteerib ja joonistab maju"]
+  },
+  {
+    "word": "insener",
+    "definitions": ["Tehnilise haridusega spetsialist, kes loob masinaid või süsteeme"]
+  },
+  {
+    "word": "raamatupidaja",
+    "definitions": ["Inimene, kes tegeleb ettevõtte arvete ja rahaga"]
+  },
+  {
+    "word": "programmeerija",
+    "definitions": ["Inimene, kes kirjutab arvutile koodi ja loob tarkvara"]
+  },
+  {
+    "word": "advokaat",
+    "definitions": ["Inimene, kes kaitseb inimesi kohtus"]
+  },
+  {
+    "word": "kohtunik",
+    "definitions": ["Inimene, kes mõistab kohtus õigust"]
+  },
+  {
+    "word": "raamatukoguhoidja",
+    "definitions": ["Inimene, kes laenutab raamatuid ja hoiab riiulid korras"]
+  },
+  {
+    "word": "psühholoog",
+    "definitions": ["Nõustaja, kes aitab inimestel lahendada muresid ja probleeme"]
+  },
+  {
+    "word": "fotograaf",
+    "definitions": ["Inimene, kes teeb fotoaparaadiga pilte"]
+  },
+  {
+    "word": "aednik",
+    "definitions": ["Inimene, kes hooldab taimi ja lilli aias"]
+  },
+  {
+    "word": "meremees",
+    "definitions": ["Inimene, kes töötab laeval ja sõidab merel"]
+  },
+  {
+    "word": "tantsija",
+    "definitions": ["Inimene, kes väljendab ennast läbi tantsu"]
+  },
+  {
+    "word": "treener",
+    "definitions": ["Inimene, kes juhendab sportlasi ja viib läbi trenne"]
+  },
+  {
+    "word": "disainer",
+    "definitions": ["Loominguline isik, kes kujundab esemeid või välimust"]
+  },
+  {
+    "word": "veterinaar",
+    "definitions": ["Loomade arst"]
+  },
+  {
+    "word": "valvur",
+    "definitions": ["Inimene, kes valvab vara või hooneid"]
+  },
+  {
+    "word": "kelner",
+    "definitions": ["Inimene, kes serveerib restoranis toitu ja jooke"]
+  },
+  {
+    "word": "koristaja",
+    "definitions": ["Inimene, kes hoiab ruumid puhtana"]
+  },
+  {
+    "word": "elektrik",
+    "definitions": ["Spetsialist, kes parandab ja paigaldab juhtmeid"]
+  },
+  {
+    "word": "torulukksepp",
+    "definitions": ["Inimene, kes parandab kraane ja veetorusid"]
+  },
+  {
+    "word": "automehaanik",
+    "definitions": ["Inimene, kes parandab katkiseid autosid"]
+  },
+  {
+    "word": "kosmonaut",
+    "definitions": ["Inimene, kes lendab kosmosesse"]
+  },
+  {
+    "word": "stjuardess",
+    "definitions": ["Lennuki teenindaja, kes hoolitseb reisijate mugavuse eest"]
+  },
+  {
+    "word": "apteeker",
+    "definitions": ["Inimene, kes müüb ravimeid apteegis"]
+  },
+  {
+    "word": "kingsepp",
+    "definitions": ["Meister, kes parandab saapaid ja kingi"]
+  },
+  {
+    "word": "rätsep",
+    "definitions": ["Inimene, kes õmbleb riideid"]
+  },
+  {
+    "word": "kalur",
+    "definitions": ["Inimene, kes püüab järvest või merest kalu"]
+  },
+  {
+    "word": "jahimees",
+    "definitions": ["Inimene, kes peab metsas jahti"]
+  },
+  {
+    "word": "kassiir",
+    "definitions": ["Inimene, kes istub poes kassa taga"]
+  },
+  {
+    "word": "pankur",
+    "definitions": ["Inimene, kes töötab pangas ja tegeleb suurte rahadega"]
+  },
+  {
+    "word": "režissöör",
+    "definitions": ["Inimene, kes juhib filmi või lavastuse tegemist"]
+  },
+  {
+    "word": "tõlkija",
+    "definitions": ["Inimene, kes tõlgib teksti ühest keelest teise"]
+  },
+  {
+    "word": "sekretär",
+    "definitions": ["Bürootöötaja, kes korraldab asjaajamist ja vastab kõnedele"]
+  },
+  {
+    "word": "arheoloog",
+    "definitions": ["Teadlane, kes kaevab välja vanu asju ja uurib ajalugu"]
+  },
+  {
+    "word": "astronoom",
+    "definitions": ["Teadlane, kes uurib tähti ja planeete"]
+  },
+  {
+    "word": "giid",
+    "definitions": ["Inimene, kes tutvustab turistidele vaatamisväärsusi"]
+  },
+  {
+    "word": "modell",
+    "definitions": ["Inimene, kes demonstreerib riideid või poseerib kunstnikele"]
+  },
+  {
+    "word": "kapten",
+    "definitions": ["Laeva või lennuki juht"]
+  },
+  {
+    "word": "poliitik",
+    "definitions": ["Inimene, kes osaleb riigi juhtimises"]
+  },
+  {
+    "word": "keevitaja",
+    "definitions": ["Tööline, kes ühendab metallist detaile kuumuse abil"]
+  },
+  {
+    "word": "lasteaiakasvataja",
+    "definitions": ["Inimene, kes hoiab ja õpetab lapsi lasteaias"]
+  },
+  {
+    "word": "bussijuht",
+    "definitions": ["Inimene, kes transpordib inimesi mööda kindlat marsruuti"]
+  },
+  {
+    "word": "psühhiaater",
+    "definitions": ["Arst, kes tegeleb vaimse tervise häiretega"]
+  },
+  {
+    "word": "massöör",
+    "definitions": ["Spetsialist, kes mudib lihaseid, et leevendada pingeid"]
+  },
+  {
+    "word": "treial",
+    "definitions": ["Tööline, kes valmistab detaile treipingil"]
+  },
+  {
+    "word": "päästja",
+    "definitions": ["Inimene, kes reageerib hädaolukordadele ja päästab elusid"]
+  },
+  {
+    "word": "raamatumüüja",
+    "definitions": ["Inimene, kes töötab raamatupoes"]
+  },
+  {
+    "word": "turvamees",
+    "definitions": ["Isik, kes tagab turvalisuse üritustel või hoonetes"]
+  },
+  {
+    "word": "ettekandja",
+    "definitions": ["Restorani teenindaja, kes toob toidu lauda"]
+  },
+  {
+    "word": "metsnik",
+    "definitions": ["Inimene, kes hoolitseb metsa ja selle tervise eest"]
+  },
+  {
+    "word": "loomaarst",
+    "definitions": ["Meditsiinitöötaja, kelle patsiendid on loomad"]
+  },
+  {
+    "word": "tõstja",
+    "definitions": ["Tööline, kes juhib tõstukit laos või ehitusel"]
+  },
+  {
+    "word": "müürsepp",
+    "definitions": ["Ehitustööline, kes laob kividest seinu"]
+  },
+  {
+    "word": "maaler",
+    "definitions": ["Inimene, kes värvib seinu ja lagesid"]
+  },
+  {
+    "word": "tarkvaraarhitekt",
+    "definitions": ["Kõrgetasemeline it-spetsialist, kes planeerib süsteemide ülesehitust"]
+  },
+  {
+    "word": "kosmeetik",
+    "definitions": ["Inimene, kes teeb näohooldust ja muid iluprotseduure"]
+  },
+  {
+    "word": "maniküürija",
+    "definitions": ["Spetsialist, kes hoolitseb klientide küünte eest"]
+  },
+  {
+    "word": "florist",
+    "definitions": ["Inimene, kes koostab lillekimpe ja dekoreerib taimedega"]
+  },
+  {
+    "word": "sõiduõpetaja",
+    "definitions": ["Inimene, kes õpetab sõitma autot või mootorratast"]
+  },
+  {
+    "word": "keemik",
+    "definitions": ["Teadlane, kes uurib aineid ja nende reaktsioone"]
+  },
+  {
+    "word": "geoloog",
+    "definitions": ["Teadlane, kes uurib maapõue ja kive"]
+  },
+  {
+    "word": "bioloog",
+    "definitions": ["Teadlane, kes uurib elusloodust"]
+  },
+  {
+    "word": "meteoroloog",
+    "definitions": ["Inimene, kes uurib ilmastikku ja koostab prognoose"]
+  },
+  {
+    "word": "veebidisainer",
+    "definitions": ["Inimene, kes kujundab veebilehtede välimust"]
+  },
+  {
+    "word": "toimetaja",
+    "definitions": ["Inimene, kes parandab ja kontrollib tekste enne avaldamist"]
+  },
+  {
+    "word": "koostaja",
+    "definitions": ["Tööline, kes paneb tehases detaile kokku"]
+  },
+  {
+    "word": "laohoidja",
+    "definitions": ["Inimene, kes peab arvet laos oleva kauba üle"]
+  },
+  {
+    "word": "kuller",
+    "definitions": ["Inimene, kes toob pakid või toidu kiiresti kohale"]
+  },
+  {
+    "word": "baarmen",
+    "definitions": ["Inimene, kes valmistab ja serveerib jooke baaris"]
+  },
+  {
+    "word": "optik",
+    "definitions": ["Spetsialist, kes tegeleb prillide ja nägemisega"]
+  },
+  {
+    "word": "hambaarst",
+    "definitions": ["Arst, kes parandab hambaid"]
+  },
+  {
+    "word": "logopeed",
+    "definitions": ["Spetsialist, kes aitab inimestel kõnehäireid parandada"]
+  },
+  {
+    "word": "sõdur",
+    "definitions": ["Inimene, kes teenib armees ja kaitseb riiki"]
+  },
+  {
+    "word": "turundaja",
+    "definitions": ["Inimene, kes reklaamib ja müüb tooteid või teenuseid"]
+  },
+  {
+    "word": "muuseumipedagoog",
+    "definitions": ["Inimene, kes viib muuseumis läbi haridusprogramme"]
+  },
+  {
+    "word": "lavastaja",
+    "definitions": ["Inimene, kes loob teatritüki kunstilise terviku"]
+  },
+  {
+    "word": "helilooja",
+    "definitions": ["Inimene, kes kirjutab uut muusikat"]
+  },
+  {
+    "word": "maakler",
+    "definitions": ["Inimene, kes vahendab kinnisvara ostu ja müüki"]
+  },
+  {
+    "word": "investor",
+    "definitions": ["Inimene, kes paigutab raha ettevõtetesse eesmärgiga teenida kasumit"]
+  }
+]

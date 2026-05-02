@@ -1,0 +1,403 @@
+[
+  {
+    "word": "kass",
+    "definitions": ["Väike koduloom, kes püüab hiiri", "Inimese lemmikloom, kes nurrub"]
+  },
+  {
+    "word": "koer",
+    "definitions": ["Inimese parim sõber", "Koduloom, kes haugub ja valvab maja"]
+  },
+  {
+    "word": "hunt",
+    "definitions": ["Eesti rahvusloom", "Metsloom, kes ulub kuu poole", "Metsas elav hall kiskja"]
+  },
+  {
+    "word": "karu",
+    "definitions": ["Suur pruun metsloom, kes magab talveund", "Talle meeldib väga mesi"]
+  },
+  {
+    "word": "rebane",
+    "definitions": ["Kaval punase karvaga metsloom", "Loom, kellel on kohev saba"]
+  },
+  {
+    "word": "jänes",
+    "definitions": ["Pikkade kõrvadega loom, kes hüppab", "Arg metsloom, kes sööb porgandit"]
+  },
+  {
+    "word": "põder",
+    "definitions": ["Eesti metsade suurim loom", "Isasloomal on suured sarved"]
+  },
+  {
+    "word": "metskits",
+    "definitions": ["Graatsiline ja väike metsaelanik", "Eestis väga tavaline pruunide silmadega sõraline"]
+  },
+  {
+    "word": "metssiga",
+    "definitions": ["Tugev loom, kellel on kärss ja hoidub karja", "Metsas elav sea sugulane"]
+  },
+  {
+    "word": "orav",
+    "definitions": ["Väike loom, kes ronib puude otsas", "Talle meeldivad pähklid ja tal on kohev saba"]
+  },
+  {
+    "word": "siil",
+    "definitions": ["Okastega kaetud väike loom", "Ta kerib ennast ohu korral rulli"]
+  },
+  {
+    "word": "kobras",
+    "definitions": ["Loom, kes ehitab tammisid", "Suurte esihammastega veeelukas"]
+  },
+  {
+    "word": "hobune",
+    "definitions": ["Suur koduloom, keda kasutatakse ratsutamiseks", "Kabjadega loom, kes hirnub"]
+  },
+  {
+    "word": "lehm",
+    "definitions": ["Koduloom, kes annab piima", "Suur sarvedega loom, kes ütleb 'ammuu'"]
+  },
+  {
+    "word": "lammas",
+    "definitions": ["Koduloom, kellelt saame villa", "Määgiv loom, kes sööb rohtu"]
+  },
+  {
+    "word": "siga",
+    "definitions": ["Roosa nahaga koduloom", "Loom, kes armastab mudas rullida"]
+  },
+  {
+    "word": "kukk",
+    "definitions": ["Kodulind, kes hommikuti kireb", "Kanakarja juht"]
+  },
+  {
+    "word": "kana",
+    "definitions": ["Kodulind, kes muneb mune"]
+  },
+  {
+    "word": "hiir",
+    "definitions": ["Väike näriline, kes armastab juustu", "Kassipüütav pisike loom"]
+  },
+  {
+    "word": "rott",
+    "definitions": ["Hiirest suurem pika sabaga näriline"]
+  },
+  {
+    "word": "konn",
+    "definitions": ["Roheline loom, kes elab tiigis ja krooksub", "Loom, kes hüppab ja püüab keelega putukaid"]
+  },
+  {
+    "word": "uss",
+    "definitions": ["Jalgadeta pikk ja libe loom"]
+  },
+  {
+    "word": "ilves",
+    "definitions": ["Eesti ainuke metsik kaslane", "Loom, kellel on kõrvade otsas tutid"]
+  },
+  {
+    "word": "mäger",
+    "definitions": ["Triibulise näoga loom, kes elab urus"]
+  },
+  {
+    "word": "hüljes",
+    "definitions": ["Läänemeres elav veeimetaja", "Läänemeres elav loom, kellel on loivad"]
+  },
+  {
+    "word": "ahv",
+    "definitions": ["Inimesega sarnane loom, kes armastab ronida", "Loom, kes ronib osavalt puudel ja armastab banaane"]
+  },
+  {
+    "word": "lõvi",
+    "definitions": ["Loomade kuningas", "Suur lakaga kaslane"]
+  },
+  {
+    "word": "tiiger",
+    "definitions": ["Triibulise karvaga suur kiskja"]
+  },
+  {
+    "word": "elevant",
+    "definitions": ["Maailma suurim maismaaloom", "Loom, kellel on pikk lont ja suured kõrvad"]
+  },
+  {
+    "word": "kaelkirjak",
+    "definitions": ["Väga pika kaelaga loom", "Kõige pikem maismaaloom, kes sööb puulehti"]
+  },
+  {
+    "word": "pingviin",
+    "definitions": ["Linnuke, kes ei lenda, aga ujub väga hästi", "Lõunapoolusel elav mustvalge lind"]
+  },
+  {
+    "word": "vaal",
+    "definitions": ["Maailma suurim imetaja, kes elab ookeanis"]
+  },
+  {
+    "word": "hai",
+    "definitions": ["Teravate hammastega suur kiskja ookeanis"]
+  },
+  {
+    "word": "kilpkonn",
+    "definitions": ["Loom, kellel on seljas tugev kilp", "Väga aeglaselt liikuv pikaealine olend"]
+  },
+  {
+    "word": "kits",
+    "definitions": ["Sarvedega koduloom, kes annab piima", "Loom, kes ronib osavalt mägedes"]
+  },
+  {
+    "word": "eesel",
+    "definitions": ["Hobuse sarnane pikkade kõrvadega loom", "Tuntud kui väga kangekaelne loom"]
+  },
+  {
+    "word": "kaamel",
+    "definitions": ["Kõrbes elav loom, kellel on küür", "Loom, kes suudab kaua ilma veeta läbi saada"]
+  },
+  {
+    "word": "sebra",
+    "definitions": ["Mustvalge triibuline hobuse sugulane"]
+  },
+  {
+    "word": "ninasarvik",
+    "definitions": ["Suur paksunahaline loom, kellel on nina peal sarv"]
+  },
+  {
+    "word": "jõehobu",
+    "definitions": ["Suur ja raske loom, kes veedab päeva vees suplemas"]
+  },
+  {
+    "word": "orikas",
+    "definitions": ["Tugev ja suur isane siga"]
+  },
+  {
+    "word": "tuhkur",
+    "definitions": ["Väike ja vilgas kärplane, keda peetakse ka lemmikloomana"]
+  },
+  {
+    "word": "sisalik",
+    "definitions": ["Pika sabaga roomaja, kes armastab päikese käes peesitada"]
+  },
+  {
+    "word": "pandi",
+    "definitions": ["Mustvalge karvaga karu, kes sööb bambust"]
+  },
+  {
+    "word": "känguru",
+    "definitions": ["Austraalia loom, kes liigub hüpates ja kannab poega kukrus"]
+  },
+  {
+    "word": "nahkhiir",
+    "definitions": ["Lendav imetaja, kes on aktiivne öösiti"]
+  },
+  {
+    "word": "mesikäpp",
+    "definitions": ["Karu hellitusnimi eesti keeles", "Loom, keda kutsutakse nii tema armastuse tõttu mee vastu"]
+  },
+  {
+    "word": "tigu",
+    "definitions": ["Väga aeglane loom, kes kannab oma maja seljas", "Loom, kes jätab liikumisel maha lima"]
+  },
+  {
+    "word": "luik",
+    "definitions": ["Suur ja sihvakas valge veelind", "Lind, kes on truuduse sümbol"]
+  },
+  {
+    "word": "rähn",
+    "definitions": ["Metsa turgutaja, kes koputab nokaga vastu puud", "Lind, kes otsib puukoore alt putukaid"]
+  },
+  {
+    "word": "skorpion",
+    "definitions": ["Mürgise astlaga lülijalgne, kes elab soojades maades"]
+  },
+  {
+    "word": "pappagoi",
+    "definitions": ["Värviline lind, kes suudab inimkõnet imiteerida"]
+  },
+  {
+    "word": "öökull",
+    "definitions": ["Tarkuse sümbol", "Lind, kes on aktiivne öösel ja keerab pead 270 kraadi"]
+  },
+  {
+    "word": "vähk",
+    "definitions": ["Sõradega veeelukas, kes kõnnib tagurpidi", "Loom, kes elab puhtas jõevees"]
+  },
+  {
+    "word": "kährik",
+    "definitions": ["Koerlane, kes näeb välja nagu pesukaru", "Eesti metsades elav öise eluviisiga loom"]
+  },
+  {
+    "word": "hamster",
+    "definitions": ["Väike näriline, kes kogub toitu põskedesse", "Populaarne väike puuris elav lemmikloom"]
+  },
+  {
+    "word": "kalkun",
+    "definitions": ["Suur kodulind, kes teeb 'kulu-kulu' häält", "Ameerika päritolu lind, keda süüakse sageli pühade ajal"]
+  },
+  {
+    "word": "kobra",
+    "definitions": ["Väga mürgine madu, kes suudab tõsta keha ja laiendada kaela"]
+  },
+  {
+    "word": "madu",
+    "definitions": ["Jalgadeta roomaja, kes võib olla mürgine või mittemürgine"]
+  },
+  {
+    "word": "sipelgas",
+    "definitions": ["Väike töökas putukas, kes elab kolooniates ja kogub toitu"]
+  },
+
+  {
+    "word": "mesilane",
+    "definitions": ["Väike triibuline putukas, kes korjab nektarit", "Putukas, kes teeb mett"]
+  },
+  {
+    "word": "liblikas",
+    "definitions": ["Värviliste tiibadega putukas", "Lendav olend, kes oli varem röövik"]
+  },
+  {
+    "word": "sääsk",
+    "definitions": ["Tüütu väike putukas, kes imeb verd", "Putukas, kes teeb pinisevat häält"]
+  },
+  {
+    "word": "kärbes",
+    "definitions": ["Tavaline toas lendav putukas", "Loom, kes armastab toidu peale maanduda"]
+  },
+  {
+    "word": "ämblik",
+    "definitions": ["Kaheksajalgne loom, kes koob võrku"]
+  },
+  {
+    "word": "pardi",
+    "definitions": ["Lume ja vee lind, kes ütleb 'prääks'", "Lind, kes ujub sageli tiigi peal"]
+  },
+  {
+    "word": "hani",
+    "definitions": ["Suur kodulind, kes on pardist suurem", "Lind, kes lendab sügisel lõunasse kolmnurgas"]
+  },
+  {
+    "word": "tuvi",
+    "definitions": ["Linnas elav hall lind", "Rahusümbolina tuntud lind"]
+  },
+  {
+    "word": "vares",
+    "definitions": ["Tark musthall lind, kes teeb 'vaak-vaak'", "Musta ja halli sulega tark lind"]
+  },
+  {
+    "word": "pääsuke",
+    "definitions": ["Eesti rahvuslind", "Kahvli kujulise sabaga väike lind"]
+  },
+  {
+    "word": "toonekurg",
+    "definitions": ["Pikkade jalgadega lind, kes ehitab pesa korstna otsa"]
+  },
+  {
+    "word": "kotkas",
+    "definitions": ["Võimas röövlind, kellel on terav pilk"]
+  },
+  {
+    "word": "ahven",
+    "definitions": ["Eesti vetes väga tavaline triibuline kala"]
+  },
+  {
+    "word": "haug",
+    "definitions": ["Pikk ja teravate hammastega röövkala"]
+  },
+  {
+    "word": "räim",
+    "definitions": ["Eesti rahvuskala", "Väike hõbedane kala Läänemeres"]
+  },
+  {
+    "word": "lõhe",
+    "definitions": ["Punase lihaga vääriskala"]
+  },
+  {
+    "word": "kiil",
+    "definitions": ["Suurte silmade ja pika kehaga lendav putukas vee ääres"]
+  },
+  {
+    "word": "rohutirts",
+    "definitions": ["Roheline putukas, kes 'mängib viiulit' ja hüppab kõrgele"]
+  },
+  {
+    "word": "lepatriinu",
+    "definitions": ["Täpiline mummuline putukas", "Väike punane mardikas mustade täppidega"]
+  },
+  {
+    "word": "mullikas",
+    "definitions": ["Noor lehm või pull"]
+  },
+  {
+    "word": "vasikas",
+    "definitions": ["Lehma laps"]
+  },
+  {
+    "word": "talleke",
+    "definitions": ["Lamba laps"]
+  },
+  {
+    "word": "sälg",
+    "definitions": ["Noor hobune"]
+  },
+  {
+    "word": "varss",
+    "definitions": ["Hobuse poeg"]
+  },
+  {
+    "word": "koerliblikas",
+    "definitions": ["Üks Eesti kõige tuntumaid kirjusid liblikaid"]
+  },
+  {
+    "word": "hirv",
+    "definitions": ["Suur ja uhke metsloom, kelle isasel on harulised sarved"]
+  },
+  {
+    "word": "nirk",
+    "definitions": ["Väga väike ja vilgas kiskja, kes vahetab talveks karva valgeks"]
+  },
+  {
+    "word": "tuhkur",
+    "definitions": ["Väike kiskja, kes on tuntud oma lõhna poolest"]
+  },
+  {
+    "word": "rott",
+    "definitions": ["Pika sabaga näriline, keda peetakse tihti kahjuriks"]
+  },
+  {
+    "word": "vastlakukkel",
+    "definitions": ["See oli nali eelmine kord, paneme päris looma: **metshobune**"]
+  },
+  {
+    "word": "vutt",
+    "definitions": ["Väike lind, kes muneb tähnilisi mune"]
+  },
+  {
+    "word": "faasan",
+    "definitions": ["Väga kireva sulelisega suur jahilind"]
+  },
+  {
+    "word": "jaanalind",
+    "definitions": ["Maailma suurim lind, kes jookseb kiiresti"]
+  },
+  {
+    "word": "flamingos",
+    "definitions": ["Roosa pikkade jalgadega lind"]
+  },
+  {
+    "word": "pelikan",
+    "definitions": ["Suure nokapaunaga lind, kes püüab kalu"]
+  },
+  {
+    "word": "meduus",
+    "definitions": ["Libe ja läbipaistev veeelukas, kes võib kõrvetada"]
+  },
+  {
+    "word": "kaheksajalg",
+    "definitions": ["Mereelukas, kellel on palju haartsaid ja kes pritsib tinti"]
+  },
+  {
+    "word": "krabi",
+    "definitions": ["Veeelukas, kellel on tugevad sõrad ja kes kõnnib külgsuunas"]
+  },
+  {
+    "word": "tursk",
+    "definitions": ["Läänemeres elav oluline püügikala", "Valge lihaga merekala"]
+  },
+  {
+    "word": "laama",
+    "definitions": ["Lõuna-Ameerika loom, kes on tuntud sülitamise poolest", "Pehme villaga kaameli sugulane"]
+  }
+]
