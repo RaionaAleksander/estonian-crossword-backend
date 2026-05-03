@@ -32,38 +32,7 @@ public class WordService {
 
     public WordResponse getWords(WordFilterRequest request) {
 
-        List<Word> words = wordRepository.findAll();
-
-        List<WordDto> filtered = words.stream()
-                .filter(w -> filterByLength(w, request))
-                .filter(w -> filterByStartsWith(w, request))
-                .filter(w -> filterByEndsWith(w, request))
-                .filter(w -> filterByContains(w, request))
-                .filter(w -> filterByNotContains(w, request))
-                .filter(w -> filterByPattern(w, request))
-                .filter(w -> filterByExcludedWords(w, request))
-                .map(this::toDto)
-                .collect(Collectors.toList());
-
-        List<WordDto> result = new ArrayList<>(filtered);
-
-        if (Boolean.TRUE.equals(request.getRandom())) {
-
-            Collections.shuffle(result);
-
-            if (request.getLimit() != null && request.getLimit() < result.size()) {
-                result = result.subList(0, request.getLimit());
-            }
-
-            result = sort(result, request);
-
-        } else {
-            result = sort(result, request);
-
-            if (request.getLimit() != null && request.getLimit() < result.size()) {
-                result = result.subList(0, request.getLimit());
-            }
-        }
+        List<WordDto> result = findWords(request);
 
         return new WordResponse(
                 result.size(),
@@ -252,5 +221,45 @@ public class WordService {
     private Word getWordOrThrow(String lemma) {
         return wordRepository.findByLemma(lemma)
                 .orElseThrow(() -> new WordNotFoundException(lemma));
+    }
+
+    public List<WordDto> findWords(WordFilterRequest request) {
+
+        List<Word> words = wordRepository.findAll();
+
+        List<WordDto> filtered = words.stream()
+                .filter(w -> filterByLength(w, request))
+                .filter(w -> filterByStartsWith(w, request))
+                .filter(w -> filterByEndsWith(w, request))
+                .filter(w -> filterByContains(w, request))
+                .filter(w -> filterByNotContains(w, request))
+                .filter(w -> filterByPattern(w, request))
+                .filter(w -> filterByExcludedWords(w, request))
+                .map(this::toDto)
+                .collect(Collectors.toList());
+
+        List<WordDto> result = new ArrayList<>(filtered);
+
+        // random + limit + sort logic
+        if (Boolean.TRUE.equals(request.getRandom())) {
+
+            Collections.shuffle(result);
+
+            if (request.getLimit() != null && request.getLimit() < result.size()) {
+                result = result.subList(0, request.getLimit());
+            }
+
+            result = sort(result, request);
+
+        } else {
+
+            result = sort(result, request);
+
+            if (request.getLimit() != null && request.getLimit() < result.size()) {
+                result = result.subList(0, request.getLimit());
+            }
+        }
+
+        return result;
     }
 }

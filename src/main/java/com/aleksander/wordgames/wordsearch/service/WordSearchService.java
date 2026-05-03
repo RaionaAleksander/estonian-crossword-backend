@@ -7,7 +7,6 @@ import com.aleksander.wordgames.common.enums.Direction;
 import com.aleksander.wordgames.generator.GameGenerator;
 import com.aleksander.wordgames.word.dto.WordDto;
 import com.aleksander.wordgames.word.dto.WordFilterRequest;
-import com.aleksander.wordgames.word.dto.WordResponse;
 import com.aleksander.wordgames.word.service.WordService;
 import com.aleksander.wordgames.wordsearch.dto.PlacementDto;
 import com.aleksander.wordgames.wordsearch.dto.WordSearchRequest;
@@ -48,9 +47,7 @@ public class WordSearchService implements GameGenerator<WordSearchRequest, WordS
             filter.setMaxLength(Math.max(rows, cols));
         }
 
-        WordResponse wordResponse = wordService.getWords(filter);
-
-        List<String> words = wordResponse.getWords()
+        List<String> words = wordService.findWords(filter)
                 .stream()
                 .map(WordDto::getLemma)
                 .toList();

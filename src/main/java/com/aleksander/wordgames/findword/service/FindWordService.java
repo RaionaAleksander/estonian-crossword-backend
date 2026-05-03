@@ -147,7 +147,7 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         filter.setLimit(20);
         filter.setRandom(true);
 
-        List<WordDto> candidates = wordService.getWords(filter).getWords();
+        List<WordDto> candidates = wordService.findWords(filter);
 
         if (candidates.isEmpty()) {
             return null;
