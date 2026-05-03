@@ -4,11 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.aleksander.wordgames.model.entity.Word;
+import com.aleksander.wordgames.model.entity.WordDefinition;
 import com.aleksander.wordgames.word.dto.WordDto;
 import com.aleksander.wordgames.word.dto.WordFilterRequest;
 import com.aleksander.wordgames.word.dto.WordResponse;
 import com.aleksander.wordgames.word.enums.SortOrder;
 import com.aleksander.wordgames.word.exception.InvalidSortException;
+import com.aleksander.wordgames.word.exception.WordNotFoundException;
+import com.aleksander.wordgames.word.repository.WordDefinitionRepository;
 import com.aleksander.wordgames.word.repository.WordRepository;
 
 import java.time.Instant;
@@ -23,6 +26,7 @@ import java.util.stream.Collectors;
 public class WordService {
 
     private final WordRepository wordRepository;
+    private final WordDefinitionRepository definitionRepository;
 
     public WordResponse getWords(WordFilterRequest request) {
 
@@ -63,6 +67,32 @@ public class WordService {
                 result.size(),
                 result,
                 Instant.now());
+    }
+
+    public List<String> getDefinitions(String word, Integer limit, boolean random) {
+
+        Word entity = wordRepository.findByLemma(word.toLowerCase())
+                .orElseThrow(() -> new WordNotFoundException(word));
+
+        List<String> definitions = definitionRepository
+                .findByWordId(entity.getId())
+                .stream()
+                .map(WordDefinition::getDefinition)
+                .collect(Collectors.toList());
+
+        if (definitions.isEmpty()) {
+            return List.of();
+        }
+
+        if (random) {
+            Collections.shuffle(definitions);
+        }
+
+        if (limit != null && limit > 0 && limit < definitions.size()) {
+            return definitions.subList(0, limit);
+        }
+
+        return definitions;
     }
 
     // ---------------- helpers ----------------

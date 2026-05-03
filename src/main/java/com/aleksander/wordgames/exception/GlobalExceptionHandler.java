@@ -1,5 +1,8 @@
 package com.aleksander.wordgames.exception;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +11,7 @@ import com.aleksander.wordgames.clue.exception.WordClueFetchException;
 import com.aleksander.wordgames.clue.exception.WordClueNotFoundException;
 import com.aleksander.wordgames.findword.exception.FindWordException;
 import com.aleksander.wordgames.word.exception.InvalidSortException;
+import com.aleksander.wordgames.word.exception.WordNotFoundException;
 import com.aleksander.wordgames.wordsearch.exception.WordSearchException;
 
 @RestControllerAdvice
@@ -36,6 +40,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(WordClueNotFoundException.class)
     public ResponseEntity<String> handleClueNotFound(WordClueNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(WordNotFoundException.class)
+    public ResponseEntity<String> handleWordNotFound(WordNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

@@ -50,4 +50,13 @@ public class WordController {
 
         return wordService.getWords(request);
     }
+
+    @GetMapping("/definitions")
+    public List<String> getDefinitions(
+            @RequestParam String word,
+            @RequestParam(required = false) Integer limit,
+            @RequestParam(defaultValue = "false") boolean random) {
+
+        return wordService.getDefinitions(word, limit, random);
+    }
 }

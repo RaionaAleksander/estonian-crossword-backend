@@ -9,4 +9,6 @@ import com.aleksander.wordgames.model.entity.WordDefinition;
 
 public interface WordDefinitionRepository extends JpaRepository<WordDefinition, Long> {
     List<WordDefinition> findByWord(Word word);
+
+    List<WordDefinition> findByWordId(Long wordId);
 }
