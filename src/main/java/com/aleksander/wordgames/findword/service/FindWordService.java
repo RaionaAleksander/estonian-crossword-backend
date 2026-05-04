@@ -34,7 +34,7 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
     @Override
     public FindWordResponse generate(FindWordRequest request) {
         FindWordValidator.validate(request);
-        String mainWord = request.getMainWord().trim().toLowerCase();
+        String mainWord = wordService.normalize(request.getMainWord());
 
         if (!wordService.exists(mainWord)) {
             throw new FindWordValidationException("Main word not found in dictionary: " + mainWord);
