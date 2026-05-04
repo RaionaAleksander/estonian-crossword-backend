@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import com.aleksander.wordgames.clue.model.WordClue;
-import com.aleksander.wordgames.clue.service.WordClueService;
 import com.aleksander.wordgames.common.enums.Direction;
 import com.aleksander.wordgames.findword.dto.FindWordClueDto;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
@@ -31,7 +29,6 @@ import lombok.RequiredArgsConstructor;
 public class FindWordService implements GameGenerator<FindWordRequest, FindWordResponse> {
 
     private final WordService wordService;
-    private final WordClueService wordClueService;
     private final Random random = new Random();
 
     @Override
@@ -81,7 +78,7 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                         ? request.getMainWordDirection()
                         : (random.nextBoolean() ? Direction.DOWN : Direction.RIGHT);
 
-                List<FindWordClueDto> enrichedClues = enrichClues(clues);
+                List<FindWordClueDto> enrichedClues = enrichDefinitions(clues);
 
                 return new FindWordResponse(
                         mainWord,
@@ -202,15 +199,20 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                 : Direction.DOWN;
     }
 
-    private List<FindWordClueDto> enrichClues(List<FindWordClueDto> clues) {
+    private List<FindWordClueDto> enrichDefinitions(List<FindWordClueDto> clues) {
 
         List<FindWordClueDto> result = new ArrayList<>();
 
         for (FindWordClueDto clueDto : clues) {
 
-            String definition = wordClueService.getClue(clueDto.getWord())
-                    .map(WordClue::definition)
-                    .orElse("Puudub vihje");
+            List<String> definitions = wordService.getDefinitions(
+                    clueDto.getWord(),
+                    1,
+                    true);
+
+            String definition = definitions.isEmpty()
+                    ? "Puudub vihje"
+                    : definitions.get(0);
 
             result.add(new FindWordClueDto(
                     clueDto.getMainWordIndex(),
