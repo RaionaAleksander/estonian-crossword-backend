@@ -1,34 +1,44 @@
 package com.aleksander.wordgames.exception;
 
+import java.time.Instant;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.aleksander.wordgames.findword.exception.FindWordException;
-import com.aleksander.wordgames.word.exception.InvalidSortException;
-import com.aleksander.wordgames.word.exception.WordNotFoundException;
-import com.aleksander.wordgames.wordsearch.exception.WordSearchException;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InvalidSortException.class)
-    public ResponseEntity<String> handleInvalidSort(InvalidSortException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<ErrorResponse> handleApiException(
+            ApiException ex,
+            HttpServletRequest request) {
+
+        ErrorResponse response = new ErrorResponse(
+                ex.getMessage(),
+                ex.getStatus().value(),
+                ex.getStatus().getReasonPhrase(),
+                Instant.now(),
+                request.getRequestURI());
+
+        return ResponseEntity.status(ex.getStatus()).body(response);
     }
 
-    @ExceptionHandler(WordSearchException.class)
-    public ResponseEntity<String> handleWordSearchException(WordSearchException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
+    // fallback handler for any unhandled exceptions
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleUnknownException(
+            Exception ex,
+            HttpServletRequest request) {
 
-    @ExceptionHandler(FindWordException.class)
-    public ResponseEntity<String> handleFindWordException(FindWordException ex) {
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
+        ErrorResponse response = new ErrorResponse(
+                "Internal server error",
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+                Instant.now(),
+                request.getRequestURI());
 
-    @ExceptionHandler(WordNotFoundException.class)
-    public ResponseEntity<String> handleWordNotFound(WordNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }

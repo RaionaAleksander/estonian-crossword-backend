@@ -1,7 +1,11 @@
 package com.aleksander.wordgames.findword.exception;
 
-public class FindWordException extends RuntimeException {
-    public FindWordException(String message) {
-        super(message);
+import org.springframework.http.HttpStatus;
+
+import com.aleksander.wordgames.exception.ApiException;
+
+public class FindWordException extends ApiException {
+    public FindWordException(String message, HttpStatus status) {
+        super(message, status);
     }
 }

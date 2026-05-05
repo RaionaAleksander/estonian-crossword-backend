@@ -1,7 +1,11 @@
 package com.aleksander.wordgames.word.exception;
 
-public class InvalidSortException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+import com.aleksander.wordgames.exception.ApiException;
+
+public class InvalidSortException extends ApiException {
     public InvalidSortException(String message) {
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }
