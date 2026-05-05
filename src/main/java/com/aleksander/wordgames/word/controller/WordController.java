@@ -71,7 +71,7 @@ public class WordController {
     @GetMapping("/pattern")
     public WordPatternResponse getPattern(
             @RequestParam String word,
-            @RequestParam(defaultValue = "2") int visibleLetters) {
+            @RequestParam(defaultValue = "1") int visibleLetters) {
 
         return wordService.getPatternResponse(word, visibleLetters);
     }

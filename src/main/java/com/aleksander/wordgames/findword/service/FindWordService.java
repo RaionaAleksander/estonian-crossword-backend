@@ -205,20 +205,13 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
         for (FindWordClueDto clueDto : clues) {
 
-            List<String> definitions = wordService.getDefinitions(
-                    clueDto.getWord(),
-                    1,
-                    true);
-
-            String definition = definitions.isEmpty()
-                    ? "Puudub vihje"
-                    : definitions.get(0);
+            String clue = wordService.resolveClue(clueDto.getWord());
 
             result.add(new FindWordClueDto(
                     clueDto.getMainWordIndex(),
                     clueDto.getWordIndex(),
                     clueDto.getWord(),
-                    definition));
+                    clue));
         }
 
         return result;

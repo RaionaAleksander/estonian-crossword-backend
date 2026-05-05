@@ -288,13 +288,11 @@ public class WordService {
         return result;
     }
 
-    private String generatePattern(String word, int visibleLetters) {
+    public String generatePattern(String word, int visibleLetters) {
 
         int length = word.length();
 
-        if (visibleLetters <= 0) {
-            visibleLetters = 1;
-        }
+        visibleLetters = Math.max(visibleLetters, 1);
 
         if (visibleLetters >= length) {
             return word;
@@ -317,5 +315,35 @@ public class WordService {
         }
 
         return new String(result);
+    }
+
+    public String resolveClue(String word) {
+
+        List<String> definitions = getDefinitions(word, 1, true);
+
+        if (!definitions.isEmpty()) {
+            return definitions.get(0);
+        }
+
+        return generatePatternSmart(word);
+    }
+
+    private String generatePatternSmart(String word) {
+
+        int visibleLetters = calculateVisibleLetters(word.length());
+
+        return generatePattern(word, visibleLetters);
+    }
+
+    private int calculateVisibleLetters(int length) {
+
+        if (length <= 3)
+            return 1;
+        if (length <= 5)
+            return 2;
+        if (length <= 7)
+            return 3;
+
+        return (int) Math.round(length * 0.5);
     }
 }
