@@ -84,7 +84,7 @@ public class WordService {
                 now);
     }
 
-    public WordPatternResponse getPatternResponse(String word, int visibleLetters) {
+    public WordPatternResponse getPatternResponse(String word, Integer visibleLetters) {
 
         Instant now = Instant.now();
 
@@ -98,7 +98,13 @@ public class WordService {
             throw new WordNotFoundException(word);
         }
 
-        String pattern = generatePattern(normalized, visibleLetters);
+        String pattern;
+
+        if (visibleLetters == null) {
+            pattern = generatePatternSmart(normalized);
+        } else {
+            pattern = generatePattern(normalized, visibleLetters);
+        }
 
         return new WordPatternResponse(
                 normalized,

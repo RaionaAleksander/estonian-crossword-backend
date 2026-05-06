@@ -10,6 +10,6 @@ import lombok.Data;
 public class WordPatternResponse {
     private String word;
     private String pattern;
-    private int visibleLetters;
+    private Integer visibleLetters;
     private Instant generatedAt;
 }
