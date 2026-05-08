@@ -11,7 +11,7 @@ import com.aleksander.wordgames.common.enums.Direction;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
 import com.aleksander.wordgames.findword.dto.FindWordResponse;
 import com.aleksander.wordgames.findword.service.FindWordService;
-import com.aleksander.wordgames.word.dto.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +28,8 @@ public class FindWordController {
             @RequestParam(defaultValue = "10") Integer maxCrossLength,
             @RequestParam(required = false) Integer mainWordGridIndex,
             @RequestParam(required = false) Direction mainWordDirection,
+
+            // filters
             @RequestParam(required = false) Integer minLength,
             @RequestParam(required = false) Integer maxLength,
             @RequestParam(required = false) String startsWith,
@@ -37,22 +39,22 @@ public class FindWordController {
             @RequestParam(required = false) String pattern,
             @RequestParam(required = false) List<String> excludedWords) {
 
-        WordFilterRequest filter = new WordFilterRequest();
-        filter.setMinLength(minLength);
-        filter.setMaxLength(maxLength);
-        filter.setStartsWith(startsWith);
-        filter.setEndsWith(endsWith);
-        filter.setContains(contains);
-        filter.setNotContains(notContains);
-        filter.setPattern(pattern);
-        filter.setExcludedWords(excludedWords);
+        WordFilterRequest filter = new WordFilterRequest(
+                minLength,
+                maxLength,
+                startsWith,
+                endsWith,
+                contains,
+                notContains,
+                pattern,
+                excludedWords);
 
-        FindWordRequest request = new FindWordRequest();
-        request.setMainWord(mainWord);
-        request.setMaxCrossLength(maxCrossLength);
-        request.setFilter(filter);
-        request.setMainWordGridIndex(mainWordGridIndex);
-        request.setMainWordDirection(mainWordDirection);
+        FindWordRequest request = new FindWordRequest(
+                mainWord,
+                maxCrossLength,
+                mainWordGridIndex,
+                mainWordDirection,
+                filter);
 
         return findWordService.generate(request);
     }

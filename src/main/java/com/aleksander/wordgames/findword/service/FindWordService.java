@@ -19,7 +19,11 @@ import com.aleksander.wordgames.findword.exception.FindWordValidationException;
 import com.aleksander.wordgames.findword.validation.FindWordValidator;
 import com.aleksander.wordgames.generator.GameGenerator;
 import com.aleksander.wordgames.word.dto.WordDto;
-import com.aleksander.wordgames.word.dto.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
+import com.aleksander.wordgames.word.dto.request.WordListRequest;
+import com.aleksander.wordgames.word.enums.SortOrder;
+import com.aleksander.wordgames.word.enums.SortType;
 import com.aleksander.wordgames.word.service.WordService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,7 +65,7 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                         mainWordGridIndex,
                         gridSize,
                         usedWords,
-                        request.getFilter());
+                        request);
 
                 if (clue == null) {
                     success = false;
@@ -99,11 +103,14 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
             int mainWordGridIndex,
             int gridSize,
             Set<String> usedWords,
-            WordFilterRequest baseFilter) {
+            FindWordRequest baseRequest) {
 
         WordFilterRequest filter = new WordFilterRequest();
 
-        if (baseFilter != null) {
+        if (baseRequest != null) {
+
+            WordFilterRequest baseFilter = baseRequest.getFilter();
+
             filter.setMinLength(baseFilter.getMinLength());
             filter.setStartsWith(baseFilter.getStartsWith());
             filter.setEndsWith(baseFilter.getEndsWith());
@@ -113,15 +120,20 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
         Set<String> contains = new LinkedHashSet<>();
 
-        if (baseFilter != null && baseFilter.getContains() != null) {
-            contains.addAll(baseFilter.getContains());
+        if (baseRequest != null
+                && baseRequest.getFilter() != null
+                && baseRequest.getFilter().getContains() != null) {
+            contains.addAll(baseRequest.getFilter().getContains());
         }
 
         contains.add(String.valueOf(letter));
 
         filter.setContains(new ArrayList<>(contains));
 
-        Integer userMax = baseFilter != null ? baseFilter.getMaxLength() : null;
+        Integer userMax = baseRequest != null
+                && baseRequest.getFilter() != null
+                        ? baseRequest.getFilter().getMaxLength()
+                        : null;
 
         if (userMax == null) {
             filter.setMaxLength(gridSize);
@@ -132,8 +144,10 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         Set<String> excluded = new HashSet<>();
 
         // 1. user excluded words
-        if (baseFilter != null && baseFilter.getExcludedWords() != null) {
-            excluded.addAll(baseFilter.getExcludedWords());
+        if (baseRequest != null
+                && baseRequest.getFilter() != null
+                && baseRequest.getFilter().getExcludedWords() != null) {
+            excluded.addAll(baseRequest.getFilter().getExcludedWords());
         }
 
         // 2. game used words
@@ -141,10 +155,17 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
         filter.setExcludedWords(new ArrayList<>(excluded));
 
-        filter.setLimit(20);
-        filter.setRandom(true);
+        WordSortRequest sort = new WordSortRequest(
+                SortType.LENGTH,
+                SortOrder.DESC);
 
-        List<WordDto> candidates = wordService.findWords(filter);
+        WordListRequest request = new WordListRequest(
+                filter,
+                sort,
+                20,
+                true);
+
+        List<WordDto> candidates = wordService.findWords(request);
 
         if (candidates.isEmpty()) {
             return null;

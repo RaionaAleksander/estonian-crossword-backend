@@ -1,13 +1,10 @@
-package com.aleksander.wordgames.word.dto;
+package com.aleksander.wordgames.word.dto.filter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
-import com.aleksander.wordgames.word.enums.SortOrder;
-import com.aleksander.wordgames.word.enums.SortType;
 
 @Data
 @NoArgsConstructor
@@ -26,11 +23,4 @@ public class WordFilterRequest {
     private String pattern;
 
     private List<String> excludedWords;
-
-    private Integer limit;
-
-    private Boolean random;
-
-    private SortType sort;
-    private SortOrder order;
 }

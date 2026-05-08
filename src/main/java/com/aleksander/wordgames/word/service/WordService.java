@@ -10,9 +10,11 @@ import com.aleksander.wordgames.model.entity.WordDefinition;
 import com.aleksander.wordgames.word.dto.WordDefinitionsResponse;
 import com.aleksander.wordgames.word.dto.WordDto;
 import com.aleksander.wordgames.word.dto.WordExistsResponse;
-import com.aleksander.wordgames.word.dto.WordFilterRequest;
 import com.aleksander.wordgames.word.dto.WordPatternResponse;
 import com.aleksander.wordgames.word.dto.WordResponse;
+import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
+import com.aleksander.wordgames.word.dto.request.WordListRequest;
 import com.aleksander.wordgames.word.enums.SortOrder;
 import com.aleksander.wordgames.word.exception.InvalidSortException;
 import com.aleksander.wordgames.word.exception.WordNotFoundException;
@@ -35,7 +37,7 @@ public class WordService {
     private final WordRepository wordRepository;
     private final WordDefinitionRepository definitionRepository;
 
-    public WordResponse getWordsResponse(WordFilterRequest request) {
+    public WordResponse getWordsResponse(WordListRequest request) {
 
         List<WordDto> result = findWords(request);
 
@@ -122,18 +124,18 @@ public class WordService {
         return new WordDto(w.getId(), w.getLemma(), w.getLength());
     }
 
-    private List<WordDto> sort(List<WordDto> list, WordFilterRequest r) {
-        if (r.getSort() == null) {
+    private List<WordDto> sort(List<WordDto> list, WordSortRequest request) {
+        if (request == null || request.getSort() == null) {
             return list;
         }
 
-        Comparator<WordDto> comparator = switch (r.getSort()) {
+        Comparator<WordDto> comparator = switch (request.getSort()) {
             case LENGTH -> Comparator.comparing(WordDto::getLength);
             case ALPHABET -> Comparator.comparing(WordDto::getLemma);
-            default -> throw new InvalidSortException("Unsupported sort type: " + r.getSort());
+            default -> throw new InvalidSortException("Unsupported sort type: " + request.getSort());
         };
 
-        if (r.getOrder() == SortOrder.DESC) {
+        if (request.getOrder() == SortOrder.DESC) {
             comparator = comparator.reversed();
         }
 
@@ -186,7 +188,7 @@ public class WordService {
         return wordRepository.findAll(specification);
     }
 
-    public List<WordDto> processWords(List<Word> words, WordFilterRequest request) {
+    public List<WordDto> processWords(List<Word> words, WordListRequest request) {
         List<WordDto> result = words.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
@@ -200,11 +202,11 @@ public class WordService {
                 result = result.subList(0, request.getLimit());
             }
 
-            result = sort(result, request);
+            result = sort(result, request.getSort());
 
         } else {
 
-            result = sort(result, request);
+            result = sort(result, request.getSort());
 
             if (request.getLimit() != null && request.getLimit() < result.size()) {
                 result = result.subList(0, request.getLimit());
@@ -214,8 +216,8 @@ public class WordService {
         return result;
     }
 
-    public List<WordDto> findWords(WordFilterRequest request) {
-        List<Word> filtered = filterWords(request);
+    public List<WordDto> findWords(WordListRequest request) {
+        List<Word> filtered = filterWords(request.getFilter());
         return processWords(filtered, request);
     }
 

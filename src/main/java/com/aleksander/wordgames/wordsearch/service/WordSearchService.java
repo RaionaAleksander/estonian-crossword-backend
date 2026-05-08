@@ -6,7 +6,11 @@ import org.springframework.stereotype.Service;
 import com.aleksander.wordgames.common.enums.Direction;
 import com.aleksander.wordgames.generator.GameGenerator;
 import com.aleksander.wordgames.word.dto.WordDto;
-import com.aleksander.wordgames.word.dto.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
+import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
+import com.aleksander.wordgames.word.dto.request.WordListRequest;
+import com.aleksander.wordgames.word.enums.SortOrder;
+import com.aleksander.wordgames.word.enums.SortType;
 import com.aleksander.wordgames.word.service.WordService;
 import com.aleksander.wordgames.wordsearch.dto.PlacementDto;
 import com.aleksander.wordgames.wordsearch.dto.WordSearchRequest;
@@ -47,7 +51,17 @@ public class WordSearchService implements GameGenerator<WordSearchRequest, WordS
             filter.setMaxLength(Math.max(rows, cols));
         }
 
-        List<String> words = wordService.findWords(filter)
+        WordSortRequest sort = new WordSortRequest(
+                SortType.LENGTH,
+                SortOrder.DESC);
+
+        WordListRequest listRequest = new WordListRequest(
+                filter,
+                sort,
+                request.getWordsCount(),
+                true);
+
+        List<String> words = wordService.findWords(listRequest)
                 .stream()
                 .map(WordDto::getLemma)
                 .toList();
