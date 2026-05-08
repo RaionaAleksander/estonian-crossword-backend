@@ -10,11 +10,13 @@ import com.aleksander.wordgames.model.entity.WordDefinition;
 import com.aleksander.wordgames.word.dto.WordDefinitionsResponse;
 import com.aleksander.wordgames.word.dto.WordDto;
 import com.aleksander.wordgames.word.dto.WordExistsResponse;
+import com.aleksander.wordgames.word.dto.WordPageResponse;
 import com.aleksander.wordgames.word.dto.WordPatternResponse;
 import com.aleksander.wordgames.word.dto.WordResponse;
 import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
 import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
 import com.aleksander.wordgames.word.dto.request.WordListRequest;
+import com.aleksander.wordgames.word.dto.request.WordPageRequest;
 import com.aleksander.wordgames.word.enums.SortOrder;
 import com.aleksander.wordgames.word.exception.InvalidSortException;
 import com.aleksander.wordgames.word.exception.WordNotFoundException;
@@ -42,6 +44,27 @@ public class WordService {
         List<WordDto> result = findWords(request);
 
         return new WordResponse(
+                result.size(),
+                result,
+                Instant.now());
+    }
+
+    public WordPageResponse getWordsPageResponse(WordPageRequest request) {
+
+        List<WordDto> result = findWordsPage(request);
+
+        int page = resolvePage(request.getPage());
+        int size = resolveSize(request.getSize());
+
+        long totalElements = filterWords(request.getFilter()).size();
+
+        int totalPages = (int) Math.ceil((double) totalElements / size);
+
+        return new WordPageResponse(
+                totalElements,
+                totalPages,
+                page,
+                size,
                 result.size(),
                 result,
                 Instant.now());
@@ -278,5 +301,41 @@ public class WordService {
             return 3;
 
         return (int) Math.round(length * 0.5);
+    }
+
+    public List<WordDto> findWordsPage(WordPageRequest request) {
+
+        List<Word> filtered = filterWords(request.getFilter());
+
+        List<WordDto> result = filtered.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+
+        result = sort(result, request.getSort());
+
+        int page = resolvePage(request.getPage());
+        int size = resolveSize(request.getSize());
+
+        int fromIndex = page * size;
+
+        if (fromIndex >= result.size()) {
+            return List.of();
+        }
+
+        int toIndex = Math.min(fromIndex + size, result.size());
+
+        return result.subList(fromIndex, toIndex);
+    }
+
+    private int resolvePage(Integer page) {
+        return (page != null && page > 0)
+                ? page
+                : 0;
+    }
+
+    private int resolveSize(Integer size) {
+        return (size != null && size > 0)
+                ? size
+                : 20;
     }
 }

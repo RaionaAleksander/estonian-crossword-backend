@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.aleksander.wordgames.word.dto.WordDefinitionsResponse;
 import com.aleksander.wordgames.word.dto.WordExistsResponse;
+import com.aleksander.wordgames.word.dto.WordPageResponse;
 import com.aleksander.wordgames.word.dto.WordPatternResponse;
 import com.aleksander.wordgames.word.dto.WordResponse;
 import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
 import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
 import com.aleksander.wordgames.word.dto.request.WordListRequest;
+import com.aleksander.wordgames.word.dto.request.WordPageRequest;
 import com.aleksander.wordgames.word.enums.SortOrder;
 import com.aleksander.wordgames.word.enums.SortType;
 import com.aleksander.wordgames.word.service.WordService;
@@ -60,6 +62,50 @@ public class WordController {
                 random);
 
         return wordService.getWordsResponse(request);
+    }
+
+    @GetMapping("/page")
+    public WordPageResponse getWordsPage(
+
+            // filters
+            @RequestParam(required = false) Integer minLength,
+            @RequestParam(required = false) Integer maxLength,
+            @RequestParam(required = false) String startsWith,
+            @RequestParam(required = false) String endsWith,
+            @RequestParam(required = false) List<String> contains,
+            @RequestParam(required = false) List<String> notContains,
+            @RequestParam(required = false) String pattern,
+            @RequestParam(required = false) List<String> excludedWords,
+
+            // sorting
+            @RequestParam(required = false) SortType sort,
+            @RequestParam(required = false) SortOrder order,
+
+            // pagination
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "20") Integer size) {
+
+        WordFilterRequest filter = new WordFilterRequest(
+                minLength,
+                maxLength,
+                startsWith,
+                endsWith,
+                contains,
+                notContains,
+                pattern,
+                excludedWords);
+
+        WordSortRequest sortRequest = new WordSortRequest(
+                sort,
+                order);
+
+        WordPageRequest request = new WordPageRequest(
+                filter,
+                sortRequest,
+                page,
+                size);
+
+        return wordService.getWordsPageResponse(request);
     }
 
     @GetMapping("/exists")
