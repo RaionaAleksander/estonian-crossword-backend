@@ -22,6 +22,7 @@ public class DataLoader implements CommandLineRunner {
 
     private final WordRepository wordRepository;
     private final WordDefinitionRepository definitionRepository;
+    private final WordLoaderProperties properties;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -32,9 +33,9 @@ public class DataLoader implements CommandLineRunner {
             return;
         }
 
-        loadFromFile("loomad.json", "LOOMAD");
-        loadFromFile("toit.json", "TOIT");
-        loadFromFile("ametid.json", "AMETID");
+        for (WordLoaderProperties.FileConfig config : properties.getFiles()) {
+            loadFromFile(config.getFile(), config.getCategory());
+        }
 
         System.out.println("Words + definitions loaded!");
     }

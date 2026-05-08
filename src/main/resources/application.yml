@@ -27,3 +27,14 @@ cors:
 
 ekilex:
   base-url: https://ekilex.ee/api
+
+word-loader:
+  files:
+    - file: loomad.json
+      category: LOOMAD
+    - file: toit.json
+      category: TOIT
+    - file: ametid.json
+      category: AMETID
+    - file: kodu.json
+      category: KODU
