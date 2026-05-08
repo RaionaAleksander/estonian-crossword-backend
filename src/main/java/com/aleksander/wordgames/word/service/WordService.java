@@ -1,6 +1,8 @@
 package com.aleksander.wordgames.word.service;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.aleksander.wordgames.model.entity.Word;
@@ -16,6 +18,7 @@ import com.aleksander.wordgames.word.exception.InvalidSortException;
 import com.aleksander.wordgames.word.exception.WordNotFoundException;
 import com.aleksander.wordgames.word.repository.WordDefinitionRepository;
 import com.aleksander.wordgames.word.repository.WordRepository;
+import com.aleksander.wordgames.word.repository.specification.WordSpecification;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -115,83 +118,6 @@ public class WordService {
 
     // ---------------- helpers ----------------
 
-    private boolean filterByLength(Word w, WordFilterRequest r) {
-        if (r.getMinLength() == null && r.getMaxLength() == null)
-            return true;
-
-        int len = w.getLength();
-
-        if (r.getMinLength() != null && len < r.getMinLength())
-            return false;
-        if (r.getMaxLength() != null && len > r.getMaxLength())
-            return false;
-
-        return true;
-    }
-
-    private boolean filterByStartsWith(Word w, WordFilterRequest r) {
-        if (r.getStartsWith() == null)
-            return true;
-        return w.getLemma().startsWith(r.getStartsWith());
-    }
-
-    private boolean filterByEndsWith(Word w, WordFilterRequest r) {
-        if (r.getEndsWith() == null)
-            return true;
-        return w.getLemma().endsWith(r.getEndsWith());
-    }
-
-    private boolean filterByContains(Word w, WordFilterRequest r) {
-        if (r.getContains() == null || r.getContains().isEmpty())
-            return true;
-
-        for (String c : r.getContains()) {
-            if (!w.getLemma().contains(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean filterByNotContains(Word w, WordFilterRequest r) {
-        if (r.getNotContains() == null)
-            return true;
-
-        for (String c : r.getNotContains()) {
-            if (w.getLemma().contains(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean filterByPattern(Word w, WordFilterRequest r) {
-        if (r.getPattern() == null)
-            return true;
-
-        String word = w.getLemma();
-        String pattern = r.getPattern();
-
-        if (word.length() != pattern.length())
-            return false;
-
-        for (int i = 0; i < pattern.length(); i++) {
-            char p = pattern.charAt(i);
-            if (p != '_' && p != word.charAt(i)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private boolean filterByExcludedWords(Word w, WordFilterRequest r) {
-        if (r.getExcludedWords() == null || r.getExcludedWords().isEmpty()) {
-            return true;
-        }
-        return !r.getExcludedWords().contains(w.getLemma());
-    }
-
     private WordDto toDto(Word w) {
         return new WordDto(w.getId(), w.getLemma(), w.getLength());
     }
@@ -255,17 +181,9 @@ public class WordService {
     }
 
     public List<Word> filterWords(WordFilterRequest request) {
-        List<Word> words = wordRepository.findAll();
+        Specification<Word> specification = WordSpecification.build(request);
 
-        return words.stream()
-                .filter(w -> filterByLength(w, request))
-                .filter(w -> filterByStartsWith(w, request))
-                .filter(w -> filterByEndsWith(w, request))
-                .filter(w -> filterByContains(w, request))
-                .filter(w -> filterByNotContains(w, request))
-                .filter(w -> filterByPattern(w, request))
-                .filter(w -> filterByExcludedWords(w, request))
-                .collect(Collectors.toList());
+        return wordRepository.findAll(specification);
     }
 
     public List<WordDto> processWords(List<Word> words, WordFilterRequest request) {
