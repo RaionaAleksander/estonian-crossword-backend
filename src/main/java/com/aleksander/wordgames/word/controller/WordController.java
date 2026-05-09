@@ -34,6 +34,8 @@ public class WordController {
             @RequestParam(required = false) String endsWith,
             @RequestParam(required = false) List<String> contains,
             @RequestParam(required = false) List<String> notContains,
+            @RequestParam(required = false) List<String> categories,
+            @RequestParam(required = false) List<String> excludedCategories,
             @RequestParam(required = false) String pattern,
             @RequestParam(required = false) List<String> excludedWords,
             @RequestParam(defaultValue = "20") Integer limit,
@@ -48,6 +50,8 @@ public class WordController {
                 endsWith,
                 contains,
                 notContains,
+                categories,
+                excludedCategories,
                 pattern,
                 excludedWords);
 
@@ -74,6 +78,8 @@ public class WordController {
             @RequestParam(required = false) String endsWith,
             @RequestParam(required = false) List<String> contains,
             @RequestParam(required = false) List<String> notContains,
+            @RequestParam(required = false) List<String> categories,
+            @RequestParam(required = false) List<String> excludedCategories,
             @RequestParam(required = false) String pattern,
             @RequestParam(required = false) List<String> excludedWords,
 
@@ -92,6 +98,8 @@ public class WordController {
                 endsWith,
                 contains,
                 notContains,
+                categories,
+                excludedCategories,
                 pattern,
                 excludedWords);
 

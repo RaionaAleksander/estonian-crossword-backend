@@ -75,6 +75,33 @@ public class WordSpecification {
                         sqlPattern));
             }
 
+            // include categories
+            if (request.getCategories() != null
+                    && !request.getCategories().isEmpty()) {
+
+                List<String> normalized = request.getCategories()
+                        .stream()
+                        .map(String::toUpperCase)
+                        .toList();
+
+                predicates.add(
+                        cb.upper(root.get("category")).in(normalized));
+            }
+
+            // exclude categories
+            if (request.getExcludedCategories() != null
+                    && !request.getExcludedCategories().isEmpty()) {
+
+                List<String> normalized = request.getExcludedCategories()
+                        .stream()
+                        .map(String::toUpperCase)
+                        .toList();
+
+                predicates.add(
+                        cb.not(
+                                cb.upper(root.get("category")).in(normalized)));
+            }
+
             return cb.and(predicates.toArray(new Predicate[0]));
         };
     }
