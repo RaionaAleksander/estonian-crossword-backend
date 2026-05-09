@@ -10,4 +10,5 @@ public class WordDto {
     private Long id;
     private String lemma;
     private int length;
+    private String category;
 }

@@ -144,7 +144,7 @@ public class WordService {
     // ---------------- helpers ----------------
 
     private WordDto toDto(Word w) {
-        return new WordDto(w.getId(), w.getLemma(), w.getLength());
+        return new WordDto(w.getId(), w.getLemma(), w.getLength(), w.getCategory());
     }
 
     private List<WordDto> sort(List<WordDto> list, WordSortRequest request) {
