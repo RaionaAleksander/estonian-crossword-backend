@@ -246,49 +246,21 @@ public class WordSearchService implements GameGenerator<WordSearchRequest, WordS
 
     private boolean canPlaceBounds(String word, int row, int col, Direction dir, int rows, int cols) {
 
-        int len = word.length();
+        int endRow = dir.nextRow(row, word.length() - 1);
+        int endCol = dir.nextCol(col, word.length() - 1);
 
-        return switch (dir) {
-            case RIGHT -> col + len <= cols;
-            case LEFT -> col - len + 1 >= 0;
-            case DOWN -> row + len <= rows;
-            case UP -> row - len + 1 >= 0;
-            case DOWN_RIGHT -> row + len <= rows && col + len <= cols;
-            case DOWN_LEFT -> row + len <= rows && col - len + 1 >= 0;
-            case UP_RIGHT -> row - len + 1 >= 0 && col + len <= cols;
-            case UP_LEFT -> row - len + 1 >= 0 && col - len + 1 >= 0;
-        };
+        return endRow >= 0
+                && endRow < rows
+                && endCol >= 0
+                && endCol < cols;
     }
 
     private boolean canPlaceWord(char[][] grid, String word, int row, int col, Direction dir) {
 
         for (int i = 0; i < word.length(); i++) {
 
-            int r = row;
-            int c = col;
-
-            switch (dir) {
-                case RIGHT -> c += i;
-                case LEFT -> c -= i;
-                case DOWN -> r += i;
-                case UP -> r -= i;
-                case DOWN_RIGHT -> {
-                    r += i;
-                    c += i;
-                }
-                case DOWN_LEFT -> {
-                    r += i;
-                    c -= i;
-                }
-                case UP_RIGHT -> {
-                    r -= i;
-                    c += i;
-                }
-                case UP_LEFT -> {
-                    r -= i;
-                    c -= i;
-                }
-            }
+            int r = dir.nextRow(row, i);
+            int c = dir.nextCol(col, i);
 
             char existing = grid[r][c];
 
@@ -304,16 +276,10 @@ public class WordSearchService implements GameGenerator<WordSearchRequest, WordS
 
         for (int i = 0; i < word.length(); i++) {
 
-            switch (dir) {
-                case RIGHT -> grid[row][col + i] = word.charAt(i);
-                case LEFT -> grid[row][col - i] = word.charAt(i);
-                case DOWN -> grid[row + i][col] = word.charAt(i);
-                case UP -> grid[row - i][col] = word.charAt(i);
-                case DOWN_RIGHT -> grid[row + i][col + i] = word.charAt(i);
-                case DOWN_LEFT -> grid[row + i][col - i] = word.charAt(i);
-                case UP_RIGHT -> grid[row - i][col + i] = word.charAt(i);
-                case UP_LEFT -> grid[row - i][col - i] = word.charAt(i);
-            }
+            int r = dir.nextRow(row, i);
+            int c = dir.nextCol(col, i);
+
+            grid[r][c] = word.charAt(i);
         }
     }
 }
