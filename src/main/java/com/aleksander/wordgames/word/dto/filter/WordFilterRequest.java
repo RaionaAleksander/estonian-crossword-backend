@@ -20,8 +20,8 @@ public class WordFilterRequest {
     private List<String> contains;
     private List<String> notContains;
 
-    private List<String> categories;
-    private List<String> excludedCategories;
+    private List<String> includeCategories;
+    private List<String> excludeCategories;
 
     private String pattern;
 

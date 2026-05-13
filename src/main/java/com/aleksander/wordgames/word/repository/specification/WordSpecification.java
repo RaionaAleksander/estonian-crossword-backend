@@ -76,10 +76,10 @@ public class WordSpecification {
             }
 
             // include categories
-            if (request.getCategories() != null
-                    && !request.getCategories().isEmpty()) {
+            if (request.getIncludeCategories() != null
+                    && !request.getIncludeCategories().isEmpty()) {
 
-                List<String> normalized = request.getCategories()
+                List<String> normalized = request.getIncludeCategories()
                         .stream()
                         .map(String::toUpperCase)
                         .toList();
@@ -89,10 +89,10 @@ public class WordSpecification {
             }
 
             // exclude categories
-            if (request.getExcludedCategories() != null
-                    && !request.getExcludedCategories().isEmpty()) {
+            if (request.getExcludeCategories() != null
+                    && !request.getExcludeCategories().isEmpty()) {
 
-                List<String> normalized = request.getExcludedCategories()
+                List<String> normalized = request.getExcludeCategories()
                         .stream()
                         .map(String::toUpperCase)
                         .toList();
