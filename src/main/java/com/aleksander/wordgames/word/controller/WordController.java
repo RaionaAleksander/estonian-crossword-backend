@@ -20,8 +20,8 @@ import com.aleksander.wordgames.word.enums.SortType;
 import com.aleksander.wordgames.word.service.WordService;
 
 @RestController
-@RequestMapping("/api/words")
 @RequiredArgsConstructor
+@RequestMapping("/api/words")
 public class WordController {
 
     private final WordService wordService;

@@ -7,17 +7,13 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
-import com.aleksander.wordgames.word.dto.filter.WordSortRequest;
-import com.aleksander.wordgames.word.dto.request.WordListRequest;
-import com.aleksander.wordgames.word.enums.SortOrder;
-import com.aleksander.wordgames.word.enums.SortType;
 import com.aleksander.wordgames.wordsearch.dto.WordSearchRequest;
 import com.aleksander.wordgames.wordsearch.dto.WordSearchResponse;
 import com.aleksander.wordgames.wordsearch.service.WordSearchService;
 
 @RestController
-@RequestMapping("/api/games/word-search")
 @RequiredArgsConstructor
+@RequestMapping("/api/games/word-search")
 public class WordSearchController {
 
     private final WordSearchService wordSearchService;

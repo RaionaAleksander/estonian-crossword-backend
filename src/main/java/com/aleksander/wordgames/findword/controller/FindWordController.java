@@ -16,8 +16,8 @@ import com.aleksander.wordgames.word.dto.filter.WordFilterRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/games/find-word")
 @RequiredArgsConstructor
+@RequestMapping("/api/games/find-word")
 public class FindWordController {
 
     private final FindWordService findWordService;
