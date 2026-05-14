@@ -25,9 +25,6 @@ cors:
     - http://localhost:4200
     - http://localhost:5173
 
-ekilex:
-  base-url: https://ekilex.ee/api
-
 word-loader:
   files:
     - file: loomad.json
@@ -38,3 +35,5 @@ word-loader:
       category: AMETID
     - file: kodu.json
       category: KODU
+    - file: riigid.json
+      category: RIIGID
