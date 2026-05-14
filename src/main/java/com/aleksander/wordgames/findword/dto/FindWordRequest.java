@@ -9,8 +9,12 @@ import lombok.*;
 @AllArgsConstructor
 public class FindWordRequest {
     private String mainWord;
+
     private Integer maxCrossLength;
-    private Integer mainWordGridIndex;
+
+    private Integer mainWordAxisIndex;
+
     private Direction mainWordDirection;
+
     private WordFilterRequest filter;
 }

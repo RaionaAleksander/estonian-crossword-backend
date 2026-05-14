@@ -2,18 +2,22 @@ package com.aleksander.wordgames.findword.service;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 import com.aleksander.wordgames.common.enums.Direction;
-import com.aleksander.wordgames.findword.dto.FindWordClueDto;
+import com.aleksander.wordgames.exception.InvalidDirectionException;
+import com.aleksander.wordgames.findword.dto.FindWordPlacementDto;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
 import com.aleksander.wordgames.findword.dto.FindWordResponse;
+import com.aleksander.wordgames.findword.dto.MainWordPlacementDto;
 import com.aleksander.wordgames.findword.exception.FindWordGenerationException;
 import com.aleksander.wordgames.findword.exception.FindWordValidationException;
 import com.aleksander.wordgames.findword.validation.FindWordValidator;
@@ -44,14 +48,73 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
             throw new FindWordValidationException("Main word not found in dictionary: " + mainWord);
         }
 
-        int gridSize = request.getMaxCrossLength();
-        int mainWordGridIndex = request.getMainWordGridIndex() != null
-                ? request.getMainWordGridIndex()
-                : request.getMaxCrossLength() / 2;
+        Direction direction = request.getMainWordDirection();
+
+        if (direction == null) {
+            direction = pickMainWordDirection();
+        }
+
+        if (direction != Direction.RIGHT
+                && direction != Direction.DOWN) {
+            throw new InvalidDirectionException(direction.name());
+        }
+
+        int maxCrossLength = request.getMaxCrossLength();
+
+        int axisIndex = request.getMainWordAxisIndex() != null
+                ? request.getMainWordAxisIndex()
+                : maxCrossLength / 2;
+
+        if (axisIndex < 0 || axisIndex >= maxCrossLength) {
+            throw new FindWordValidationException(
+                    "Axis index out of bounds: " + axisIndex);
+        }
+
+        int rows;
+        int cols;
+
+        int mainRow;
+        int mainCol;
+
+        if (direction == Direction.RIGHT) {
+
+            rows = maxCrossLength;
+            cols = mainWord.length();
+
+            mainRow = axisIndex;
+            mainCol = 0;
+
+        } else {
+
+            rows = mainWord.length();
+            cols = maxCrossLength;
+
+            mainRow = 0;
+            mainCol = axisIndex;
+        }
+
+        char[][] grid = createGrid(rows, cols);
+
+        placeWord(
+                grid,
+                mainWord,
+                mainRow,
+                mainCol,
+                direction);
+
+        MainWordPlacementDto mainWordPlacement = new MainWordPlacementDto(
+                mainWord,
+                mainRow,
+                mainCol,
+                direction);
+
+        Direction clueDirection = direction == Direction.RIGHT
+                ? Direction.DOWN
+                : Direction.RIGHT;
 
         for (int attempt = 0; attempt < 100; attempt++) {
             boolean success = true;
-            List<FindWordClueDto> clues = new ArrayList<>();
+            List<FindWordPlacementDto> clues = new ArrayList<>();
             Set<String> usedWords = new HashSet<>();
             usedWords.add(mainWord);
 
@@ -59,36 +122,35 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
                 char letter = mainWord.charAt(i);
 
-                FindWordClueDto clue = findWordForLetter(
+                FindWordPlacementDto placement = findWordForLetter(
                         letter,
                         i,
-                        mainWordGridIndex,
-                        gridSize,
+                        axisIndex,
+                        clueDirection,
+                        maxCrossLength,
                         usedWords,
                         request);
 
-                if (clue == null) {
+                if (placement == null) {
                     success = false;
                     break;
                 }
 
-                clues.add(clue);
-                usedWords.add(clue.getWord());
+                clues.add(placement);
+                usedWords.add(placement.getWord());
             }
 
             if (success) {
 
-                Direction direction = request.getMainWordDirection() != null
-                        ? request.getMainWordDirection()
-                        : (random.nextBoolean() ? Direction.DOWN : Direction.RIGHT);
+                placeClueWords(grid, clues);
 
-                List<FindWordClueDto> enrichedClues = enrichDefinitions(clues);
+                List<FindWordPlacementDto> enrichedClues = enrichDefinitions(clues);
 
                 return new FindWordResponse(
-                        mainWord,
-                        direction,
-                        mainWordGridIndex,
-                        request.getMaxCrossLength(),
+                        rows,
+                        cols,
+                        grid,
+                        mainWordPlacement,
                         enrichedClues,
                         Instant.now());
             }
@@ -97,85 +159,39 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         throw new FindWordGenerationException("Failed to generate find-word puzzle");
     }
 
-    private FindWordClueDto findWordForLetter(
+    private FindWordPlacementDto findWordForLetter(
             char letter,
-            int mainWordLetterIndex,
-            int mainWordGridIndex,
-            int gridSize,
+            int mainWordIndex,
+            int axisIndex,
+            Direction clueDirection,
+            int crossLength,
             Set<String> usedWords,
             FindWordRequest baseRequest) {
 
-        WordFilterRequest filter = new WordFilterRequest();
+        WordFilterRequest filter = buildFilter(baseRequest);
 
-        if (baseRequest != null) {
+        filter.setMaxLength(
+                Math.min(
+                        Optional.ofNullable(baseRequest.getFilter().getMaxLength())
+                                .orElse(crossLength),
+                        crossLength));
 
-            WordFilterRequest baseFilter = baseRequest.getFilter();
-
-            filter.setMinLength(baseFilter.getMinLength());
-            filter.setStartsWith(baseFilter.getStartsWith());
-            filter.setEndsWith(baseFilter.getEndsWith());
-            filter.setNotContains(baseFilter.getNotContains());
-            filter.setPattern(baseFilter.getPattern());
-        }
-
-        Set<String> contains = new LinkedHashSet<>();
-
-        if (baseRequest != null
-                && baseRequest.getFilter() != null
-                && baseRequest.getFilter().getContains() != null) {
-            contains.addAll(baseRequest.getFilter().getContains());
-        }
-
-        contains.add(String.valueOf(letter));
-
-        filter.setContains(new ArrayList<>(contains));
-
-        Integer userMax = baseRequest != null
-                && baseRequest.getFilter() != null
-                        ? baseRequest.getFilter().getMaxLength()
-                        : null;
-
-        if (userMax == null) {
-            filter.setMaxLength(gridSize);
-        } else {
-            filter.setMaxLength(Math.min(userMax, gridSize));
-        }
-
-        Set<String> excluded = new HashSet<>();
-
-        // 1. user excluded words
-        if (baseRequest != null
-                && baseRequest.getFilter() != null
-                && baseRequest.getFilter().getExcludedWords() != null) {
-            excluded.addAll(baseRequest.getFilter().getExcludedWords());
-        }
-
-        // 2. game used words
-        excluded.addAll(usedWords);
-
-        filter.setExcludedWords(new ArrayList<>(excluded));
-
-        WordSortRequest sort = new WordSortRequest(
-                SortType.LENGTH,
-                SortOrder.DESC);
+        filter.setContains(mergeContains(baseRequest, letter));
+        filter.setExcludedWords(mergeExcluded(baseRequest, usedWords));
 
         WordListRequest request = new WordListRequest(
                 filter,
-                sort,
+                new WordSortRequest(SortType.LENGTH, SortOrder.DESC),
                 20,
                 true);
 
         List<WordDto> candidates = wordService.findWords(request);
 
-        if (candidates.isEmpty()) {
-            return null;
-        }
-
         for (WordDto dto : candidates) {
 
             String word = dto.getLemma();
 
-            List<Integer> validIndexes = findValidIndexes(word, letter, mainWordGridIndex, gridSize);
+            List<Integer> validIndexes = findValidIndexes(word, letter, axisIndex, crossLength);
 
             if (validIndexes.isEmpty()) {
                 continue;
@@ -183,11 +199,33 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
 
             int wordIndex = validIndexes.get(random.nextInt(validIndexes.size()));
 
-            return new FindWordClueDto(
-                    mainWordLetterIndex,
-                    wordIndex,
+            int row;
+            int col;
+
+            switch (clueDirection) {
+
+                case DOWN -> {
+
+                    row = axisIndex - wordIndex;
+                    col = mainWordIndex;
+                }
+
+                case RIGHT -> {
+
+                    row = mainWordIndex;
+                    col = axisIndex - wordIndex;
+                }
+
+                default -> throw new InvalidDirectionException(
+                        clueDirection.name());
+            }
+
+            return new FindWordPlacementDto(
                     word,
-                    null);
+                    null, // clue (enrich later)
+                    row,
+                    col,
+                    clueDirection);
         }
 
         return null;
@@ -214,25 +252,133 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
         return validIndexes;
     }
 
-    private Direction pickRandomDirection() {
+    private Direction pickMainWordDirection() {
         return random.nextBoolean()
                 ? Direction.RIGHT
                 : Direction.DOWN;
     }
 
-    private List<FindWordClueDto> enrichDefinitions(List<FindWordClueDto> clues) {
+    private char[][] createGrid(int rows, int cols) {
 
-        List<FindWordClueDto> result = new ArrayList<>();
+        char[][] grid = new char[rows][cols];
 
-        for (FindWordClueDto clueDto : clues) {
+        for (int row = 0; row < rows; row++) {
+            Arrays.fill(grid[row], ' ');
+        }
+
+        return grid;
+    }
+
+    private void placeWord(
+            char[][] grid,
+            String word,
+            int row,
+            int col,
+            Direction direction) {
+
+        switch (direction) {
+
+            case RIGHT -> {
+                for (int i = 0; i < word.length(); i++) {
+                    grid[row][col + i] = word.charAt(i);
+                }
+            }
+
+            case DOWN -> {
+                for (int i = 0; i < word.length(); i++) {
+                    grid[row + i][col] = word.charAt(i);
+                }
+            }
+
+            default -> throw new InvalidDirectionException(direction.name());
+        }
+    }
+
+    private WordFilterRequest buildFilter(FindWordRequest baseRequest) {
+
+        WordFilterRequest filter = new WordFilterRequest();
+
+        if (baseRequest == null || baseRequest.getFilter() == null) {
+            return filter;
+        }
+
+        WordFilterRequest baseFilter = baseRequest.getFilter();
+
+        filter.setMinLength(baseFilter.getMinLength());
+        filter.setMaxLength(baseFilter.getMaxLength());
+        filter.setStartsWith(baseFilter.getStartsWith());
+        filter.setEndsWith(baseFilter.getEndsWith());
+        filter.setNotContains(baseFilter.getNotContains());
+        filter.setPattern(baseFilter.getPattern());
+
+        filter.setIncludeCategories(baseFilter.getIncludeCategories());
+        filter.setExcludeCategories(baseFilter.getExcludeCategories());
+
+        return filter;
+    }
+
+    private List<String> mergeContains(FindWordRequest baseRequest, char letter) {
+
+        Set<String> contains = new LinkedHashSet<>();
+
+        if (baseRequest != null
+                && baseRequest.getFilter() != null
+                && baseRequest.getFilter().getContains() != null) {
+
+            contains.addAll(baseRequest.getFilter().getContains());
+        }
+
+        contains.add(String.valueOf(letter));
+
+        return new ArrayList<>(contains);
+    }
+
+    private List<String> mergeExcluded(FindWordRequest baseRequest, Set<String> usedWords) {
+
+        Set<String> excluded = new HashSet<>();
+
+        if (baseRequest != null
+                && baseRequest.getFilter() != null
+                && baseRequest.getFilter().getExcludedWords() != null) {
+
+            excluded.addAll(baseRequest.getFilter().getExcludedWords());
+        }
+
+        excluded.addAll(usedWords);
+
+        return new ArrayList<>(excluded);
+    }
+
+    private void placeClueWords(
+            char[][] grid,
+            List<FindWordPlacementDto> clues) {
+
+        for (FindWordPlacementDto clue : clues) {
+
+            placeWord(
+                    grid,
+                    clue.getWord(),
+                    clue.getRow(),
+                    clue.getCol(),
+                    clue.getDirection());
+        }
+    }
+
+    private List<FindWordPlacementDto> enrichDefinitions(
+            List<FindWordPlacementDto> clues) {
+
+        List<FindWordPlacementDto> result = new ArrayList<>();
+
+        for (FindWordPlacementDto clueDto : clues) {
 
             String clue = wordService.resolveClue(clueDto.getWord());
 
-            result.add(new FindWordClueDto(
-                    clueDto.getMainWordIndex(),
-                    clueDto.getWordIndex(),
+            result.add(new FindWordPlacementDto(
                     clueDto.getWord(),
-                    clue));
+                    clue,
+                    clueDto.getRow(),
+                    clueDto.getCol(),
+                    clueDto.getDirection()));
         }
 
         return result;

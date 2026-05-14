@@ -26,7 +26,7 @@ public class FindWordController {
     public FindWordResponse generate(
             @RequestParam String mainWord,
             @RequestParam(defaultValue = "10") Integer maxCrossLength,
-            @RequestParam(required = false) Integer mainWordGridIndex,
+            @RequestParam(required = false) Integer mainWordAxisIndex,
             @RequestParam(required = false) Direction mainWordDirection,
 
             // filters
@@ -36,8 +36,8 @@ public class FindWordController {
             @RequestParam(required = false) String endsWith,
             @RequestParam(required = false) List<String> contains,
             @RequestParam(required = false) List<String> notContains,
-            @RequestParam(required = false) List<String> categories,
-            @RequestParam(required = false) List<String> excludedCategories,
+            @RequestParam(required = false) List<String> includeCategories,
+            @RequestParam(required = false) List<String> excludeCategories,
             @RequestParam(required = false) String pattern,
             @RequestParam(required = false) List<String> excludedWords) {
 
@@ -48,15 +48,15 @@ public class FindWordController {
                 endsWith,
                 contains,
                 notContains,
-                categories,
-                excludedCategories,
+                includeCategories,
+                excludeCategories,
                 pattern,
                 excludedWords);
 
         FindWordRequest request = new FindWordRequest(
                 mainWord,
                 maxCrossLength,
-                mainWordGridIndex,
+                mainWordAxisIndex,
                 mainWordDirection,
                 filter);
 

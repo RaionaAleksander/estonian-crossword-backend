@@ -46,11 +46,11 @@ public class FindWordValidator {
             throw new FindWordValidationException("maxLength must be <= maxCrossLength");
         }
 
-        Integer mainWordGridIndex = request.getMainWordGridIndex();
+        Integer mainWordAxisIndex = request.getMainWordAxisIndex();
 
-        if (mainWordGridIndex != null) {
-            if (mainWordGridIndex < 0 || mainWordGridIndex >= maxCrossLength) {
-                throw new FindWordValidationException("mainWordGridIndex must be within grid bounds");
+        if (mainWordAxisIndex != null) {
+            if (mainWordAxisIndex < 0 || mainWordAxisIndex >= maxCrossLength) {
+                throw new FindWordValidationException("mainWordAxisIndex must be within grid bounds");
             }
         }
     }
