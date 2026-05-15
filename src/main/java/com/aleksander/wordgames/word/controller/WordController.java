@@ -21,7 +21,7 @@ import com.aleksander.wordgames.word.service.WordService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/words")
+@RequestMapping("/api/v1/words")
 public class WordController {
 
     private final WordService wordService;

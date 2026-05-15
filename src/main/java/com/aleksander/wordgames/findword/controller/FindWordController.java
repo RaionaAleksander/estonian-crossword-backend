@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/games/find-word")
+@RequestMapping("/api/v1/games/find-word")
 public class FindWordController {
 
     private final FindWordService findWordService;

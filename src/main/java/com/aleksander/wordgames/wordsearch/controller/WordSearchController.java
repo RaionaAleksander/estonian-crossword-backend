@@ -13,7 +13,7 @@ import com.aleksander.wordgames.wordsearch.service.WordSearchService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/games/word-search")
+@RequestMapping("/api/v1/games/word-search")
 public class WordSearchController {
 
     private final WordSearchService wordSearchService;
