@@ -1,5 +1,7 @@
 package com.aleksander.wordgames.savedgame.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,11 @@ import lombok.RequiredArgsConstructor;
 public class SavedGameController {
 
     private final SavedGameService savedGameService;
+
+    @GetMapping("/{id}")
+    public JsonNode getById(@PathVariable Long id) {
+        return savedGameService.getById(id);
+    }
 
     @PostMapping
     public SavedGameResponse save(@RequestBody JsonNode payload) {
