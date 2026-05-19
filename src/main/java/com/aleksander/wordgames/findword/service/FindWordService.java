@@ -13,6 +13,7 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.aleksander.wordgames.common.enums.Direction;
+import com.aleksander.wordgames.common.enums.GameType;
 import com.aleksander.wordgames.exception.InvalidDirectionException;
 import com.aleksander.wordgames.findword.dto.FindWordPlacementDto;
 import com.aleksander.wordgames.findword.dto.FindWordRequest;
@@ -150,6 +151,7 @@ public class FindWordService implements GameGenerator<FindWordRequest, FindWordR
                 FilterMetaDto meta = wordService.buildFilterMeta(request.getFilter());
 
                 return new FindWordResponse(
+                        GameType.FIND_WORD,
                         rows,
                         cols,
                         grid,

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.aleksander.wordgames.common.enums.Direction;
+import com.aleksander.wordgames.common.enums.GameType;
 import com.aleksander.wordgames.exception.InvalidDirectionException;
 import com.aleksander.wordgames.generator.GameGenerator;
 import com.aleksander.wordgames.word.dto.meta.FilterMetaDto;
@@ -114,6 +115,7 @@ public class WordSearchService implements GameGenerator<WordSearchRequest, WordS
                 FilterMetaDto meta = wordService.buildFilterMeta(request.getFilter());
 
                 return new WordSearchResponse(
+                        GameType.WORD_SEARCH,
                         rows,
                         cols,
                         grid,
