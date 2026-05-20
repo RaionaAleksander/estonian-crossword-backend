@@ -3,21 +3,18 @@ package com.aleksander.crossword.integration.savedgame;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.aleksander.wordgames.EstonianCrosswordBackendApplication;
+import com.aleksander.crossword.integration.BaseIntegrationTest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes = EstonianCrosswordBackendApplication.class)
-@AutoConfigureMockMvc
-public class SavedGameControllerIT {
+public class SavedGameControllerIT extends BaseIntegrationTest {
+
     @Autowired
     private MockMvc mockMvc;
 
