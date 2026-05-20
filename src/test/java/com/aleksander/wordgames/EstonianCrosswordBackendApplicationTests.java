@@ -1,4 +1,4 @@
-package com.aleksander.crossword;
+package com.aleksander.wordgames;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
