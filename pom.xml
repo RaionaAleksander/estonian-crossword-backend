@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aleksander.crossword</groupId>
-	<artifactId>estonian-crossword-backend</artifactId>
+	<artifactId>estonian-word-games-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>estonian-crossword-backend</name>
+	<name>estonian-word-games-backend</name>
 	<description/>
 	<url/>
 	<licenses>

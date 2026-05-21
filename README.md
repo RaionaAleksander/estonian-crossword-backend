@@ -1,1 +1,1 @@
-# Estonian crossword backend
+# Estonian word games backend
