@@ -48,7 +48,7 @@ public class WordService {
 
         WordRequestMetaDto meta = buildWordRequestMeta(
                 request.getFilter(),
-                null);
+                request.getSort());
 
         return new WordResponse(
                 result.size(),
@@ -239,6 +239,8 @@ public class WordService {
 
             result = result.subList(0, request.getLimit());
         }
+
+        result = sort(result, request.getSort());
 
         return result;
     }

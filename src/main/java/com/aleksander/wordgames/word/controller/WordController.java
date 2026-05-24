@@ -86,7 +86,9 @@ public class WordController {
 			@RequestParam(required = false) List<String> excludeCategories,
 			@RequestParam(required = false) String pattern,
 			@RequestParam(required = false) List<String> excludedWords,
-			@RequestParam(defaultValue = "20") Integer limit) {
+			@RequestParam(defaultValue = "20") Integer limit,
+			@RequestParam(required = false) SortType sort,
+			@RequestParam(required = false) SortOrder order) {
 
 		WordFilterRequest filterRequest = new WordFilterRequest(
 				minLength,
@@ -100,8 +102,13 @@ public class WordController {
 				pattern,
 				excludedWords);
 
+		WordSortRequest sortRequest = new WordSortRequest(
+				sort,
+				order);
+
 		WordRandomListRequest request = new WordRandomListRequest(
 				filterRequest,
+				sortRequest,
 				limit);
 
 		return wordService.getRandomWordsResponse(request);

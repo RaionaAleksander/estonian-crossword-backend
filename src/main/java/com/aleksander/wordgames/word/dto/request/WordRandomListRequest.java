@@ -8,5 +8,7 @@ public class WordRandomListRequest {
 
     private WordFilterRequest filter;
 
+    private WordSortRequest sort;
+
     private Integer limit;
 }
